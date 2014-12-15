@@ -23,30 +23,43 @@ namespace Joomiz.Blog.Repository
             return author;
         }
 
-        public PagedList<Author> GetAll(int pageNumber = 1, int pageSize = 50)
-        {
-            var list = new PagedList<Author>();            
-
+        public IEnumerable<Author> GetAll()
+        {            
             using (var connection = SqlHelper.GetConnection())
             {
                 string sql = @"SELECT Id, Name, Email, IsActive, DateCreated FROM Author ORDER BY Name";
-                list = connection.Query<Author>(sql) as PagedList<Author>;
+                return connection.Query<Author>(sql).ToList();
             }
-
-            return list;
         }
 
         public void Add(Author obj)
         {
-            throw new NotImplementedException();
+            using (var connection = SqlHelper.GetConnection())
+            {
+                string sql = @"INSERT INTO Author(Name, Email, Password, IsActive, DateCreated) VALUES(@Name, @Email, @Password, @IsActive, @DateCreated)";
+                connection.Execute(sql, obj);
+            }
         }
 
         public void Update(Author obj)
         {
-            throw new NotImplementedException();
+            using (var connection = SqlHelper.GetConnection())
+            {
+                string sql = @"UPDATE Author SET Name = @Name, Email = @Email, Password = @Password, IsActive = @IsActive WHERE Id = @Id";
+                connection.Execute(sql, obj);
+            }
         }
 
         public void Delete(int id)
+        {
+            using (var connection = SqlHelper.GetConnection())
+            {
+                string sql = @"DELETE FROM Author WHERE Id = @Id";
+                connection.Execute(sql, new { Id = id });
+            }
+        }
+
+        public PagedList<Author> GetAll(int pageNumber = 1, int pageSize = 50)
         {
             throw new NotImplementedException();
         }

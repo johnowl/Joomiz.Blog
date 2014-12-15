@@ -12,5 +12,6 @@ namespace Joomiz.Blog.Domain.Entities
         public ICollection<Category> Categories { get; set; }
         public DateTime DateCreated { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public bool IsPublished { get; set; }
     }
 }
