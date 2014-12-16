@@ -5,7 +5,5 @@
 <h2>Pre-requisites</h2>
 
 <ul>
-<li>Visual Studio 2013</li>
-<li>Dapper dot net</li>
-<li>Asp.Net Mvc</li>
+<li>Visual Studio 2013 Community</li>
 </ul>
