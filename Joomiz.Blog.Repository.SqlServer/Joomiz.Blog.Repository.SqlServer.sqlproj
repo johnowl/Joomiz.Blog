@@ -57,13 +57,19 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Table" />
+    <Folder Include="Tables" />
+    <Folder Include="Procedures" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Table\Author.sql" />
-    <Build Include="Table\Category.sql" />
-    <Build Include="Table\Comment.sql" />
-    <Build Include="Table\Post.sql" />
+    <Build Include="Tables\Author.sql" />
+    <Build Include="Tables\Category.sql" />
+    <Build Include="Tables\Comment.sql" />
+    <Build Include="Tables\Post.sql" />
+    <Build Include="Procedures\Get_Author_By_Id.sql" />
+    <Build Include="Procedures\List_Author.sql" />
+    <Build Include="Procedures\Add_Author.sql" />
+    <Build Include="Procedures\Update_Author.sql" />
+    <Build Include="Procedures\Delete_Author.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Joomiz.Blog.Repository.SqlServer.refactorlog" />
