@@ -37,6 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorRepository.cs" />
+    <Compile Include="CategoryRepository.cs" />
+    <Compile Include="CommentRepository.cs" />
     <Compile Include="Helper\SqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

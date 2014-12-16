@@ -1,12 +1,12 @@
 ﻿using Joomiz.Blog.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 
 namespace Joomiz.Blog.Domain.Contracts.Repositories
 {
     public interface ICommentRepository : IRepositoryBase<Comment>
-    {
-        void Approve(Comment comment, Author author);
-        void Reject(Comment comment, Author author);
+    {        
+        PagedList<Comment> GetByPostId(int postId, int pageNumber = 1, int pageSize = 50);        
     }
 }

@@ -13,17 +13,7 @@ namespace Joomiz.Blog.Domain.Services
         {
             this.commentRepository = commentRepository;
         }
-
-        public void Approve(Comment comment, Author author)
-        {
-            this.commentRepository.Approve(comment, author);
-        }
-
-        public void Reject(Comment comment, Author author)
-        {
-            this.commentRepository.Reject(comment, author);
-        }
-
+       
         public Comment GetById(int id)
         {
             return this.commentRepository.GetById(id);
@@ -47,6 +37,11 @@ namespace Joomiz.Blog.Domain.Services
         public void Delete(int id)
         {
             this.commentRepository.Delete(id);
+        }
+
+        public PagedList<Comment> GetByPostId(int postId, int pageNumber = 1, int pageSize = 50)
+        {
+            return this.commentRepository.GetByPostId(postId, pageNumber, pageSize);
         }
     }
 }

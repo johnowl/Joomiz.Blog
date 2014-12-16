@@ -3,11 +3,7 @@
 AS
 BEGIN
 
-	UPDATE [Author]
-	   SET [Name] = @Name, 
-		   [Email] = @Email, 
-		   [Password] = @Password, 
-		   [IsActive] = @IsActive
+	DELETE FROM [Author]	   
 	WHERE [Id] = @Id
 	
 	

@@ -9,9 +9,9 @@ namespace Joomiz.Blog.Domain.Entities
         public string Title { get; set; }
         public string Body { get; set; }
         public Author Author { get; set; }
-        public ICollection<Category> Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
         public DateTime DateCreated { get; set; }
-        public ICollection<Comment> Comments { get; set; }
+        public IEnumerable<Comment> Comments { get; set; }
         public bool IsPublished { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Joomiz.Blog.Repository.Helper
 {
-    public class SqlHelper
+    public static class SqlHelper
     {
         public static SqlConnection GetConnection()
         {
@@ -32,5 +32,14 @@ namespace Joomiz.Blog.Repository.Helper
 
             return connection;
         }
+
+        public static T GetValueOrDefault<T>(this SqlDataReader reader, int colIndex)
+        {
+            if (reader.IsDBNull(colIndex))
+                return default(T);
+            else
+                return (T)Convert.ChangeType(reader.GetValue(colIndex), typeof(T));
+        }        
+        
     }
 }

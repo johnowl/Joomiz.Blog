@@ -70,6 +70,12 @@
     <Build Include="Procedures\Add_Author.sql" />
     <Build Include="Procedures\Update_Author.sql" />
     <Build Include="Procedures\Delete_Author.sql" />
+    <Build Include="Tables\PostCategory.sql" />
+    <Build Include="Procedures\Add_Category.sql" />
+    <Build Include="Procedures\Delete_Category.sql" />
+    <Build Include="Procedures\Get_Category_By_Id.sql" />
+    <Build Include="Procedures\List_Category.sql" />
+    <Build Include="Procedures\Update_Category.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Joomiz.Blog.Repository.SqlServer.refactorlog" />

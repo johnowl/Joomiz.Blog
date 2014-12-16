@@ -7,5 +7,6 @@
     [Url] VARCHAR(1024) NULL, 
     [Body] TEXT NOT NULL, 
 	[Status] INT NOT NULL DEFAULT 0,
-    [DateCreated] NCHAR(10) NOT NULL
+    [DateCreated] DATETIME NOT NULL,
+	CONSTRAINT [FK_Comment_PostId] FOREIGN KEY ([PostId]) REFERENCES [Post]([Id])
 )

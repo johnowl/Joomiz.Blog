@@ -8,16 +8,16 @@ using System.Data.SqlClient;
 
 namespace Joomiz.Blog.Repository
 {
-    public class AuthorRepository : IAuthorRepository
+    public class CategoryRepository : ICategoryRepository
     {
-        public Author GetById(int id)
+        public Category GetById(int id)
         {
-            Author author = null;
+            Category author = null;
 
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Get_Author_By_Id";
+                command.CommandText = "Get_Category_By_Id";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@Id", id);
@@ -26,48 +26,45 @@ namespace Joomiz.Blog.Repository
 
                 if (reader.Read())
                 {
-                    author = FillAuthor(reader);
+                    author = FillCategory(reader);
                 }
             }
 
             return author;
-        }        
+        }
 
-        public IEnumerable<Author> GetAll()
+        public IEnumerable<Category> GetAll()
         {
-            var list = new List<Author>();
+            var list = new List<Category>();
 
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "List_Author";
+                command.CommandText = "List_Category";
                 command.CommandType = CommandType.StoredProcedure;
 
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    list.Add(FillAuthor(reader));
+                    list.Add(FillCategory(reader));
                 }
             }
 
             return list;
         }
 
-        public void Add(Author obj)
+        public void Add(Category obj)
         {
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Add_Author";
+                command.CommandText = "Add_Category";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
 
-                command.Parameters.AddWithValue("@Name", obj.Name);
-                command.Parameters.AddWithValue("@Email", obj.Email);
-                command.Parameters.AddWithValue("@Password", obj.Password);
-                command.Parameters.AddWithValue("@IsActive", obj.IsActive);
+                command.Parameters.AddWithValue("@Name", obj.Name);                
                 command.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
 
                 command.ExecuteNonQuery();
@@ -76,20 +73,16 @@ namespace Joomiz.Blog.Repository
             }
         }
 
-        public void Update(Author obj)
+        public void Update(Category obj)
         {
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Update_Author";
+                command.CommandText = "Update_Category";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@Id", obj.Id);
-
                 command.Parameters.AddWithValue("@Name", obj.Name);
-                command.Parameters.AddWithValue("@Email", obj.Email);
-                command.Parameters.AddWithValue("@Password", obj.Password);
-                command.Parameters.AddWithValue("@IsActive", obj.IsActive);
 
                 command.ExecuteNonQuery();
             }
@@ -100,7 +93,7 @@ namespace Joomiz.Blog.Repository
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Delete_Author";
+                command.CommandText = "Delete_Category";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@Id", id);
@@ -109,22 +102,19 @@ namespace Joomiz.Blog.Repository
             }
         }
 
-        private Author FillAuthor(SqlDataReader reader)
+        private Category FillCategory(SqlDataReader reader)
         {
-            var author = new Author();
+            var author = new Category();
             author.Id = reader.GetInt32(0);
-            author.Name = reader.GetString(1);
-            author.Email = reader.GetString(2);
-            author.Password = reader.GetString(3);
-            author.IsActive = reader.GetBoolean(4);
-            author.DateCreated = reader.GetDateTime(5);
+            author.Name = reader.GetString(1);           
+            author.DateCreated = reader.GetDateTime(2);
 
             return author;
         }
 
-        public PagedList<Author> GetAll(int pageNumber = 1, int pageSize = 50)
+        public PagedList<Category> GetAll(int pageNumber = 1, int pageSize = 50)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
     }
 }

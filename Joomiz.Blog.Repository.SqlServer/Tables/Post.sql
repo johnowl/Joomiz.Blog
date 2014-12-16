@@ -5,5 +5,6 @@
     [Title] VARCHAR(1024) NULL, 
     [Body] TEXT NULL, 
 	[IsPublished] BIT NOT NULL DEFAULT 0,
-    [DateCreated] DATETIME NOT NULL
+    [DateCreated] DATETIME NOT NULL,
+	CONSTRAINT [FK_Post_AuthorId] FOREIGN KEY ([AuthorId]) REFERENCES [Author]([Id])
 )
