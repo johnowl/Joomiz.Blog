@@ -5,20 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Xml;
 
 namespace Joomiz.Blog.Repository
 {
-    public class CommentRepository : ICommentRepository
-    {        
-
-        public Comment GetById(int id)
+    public class PostRepository : IPostRepository
+    {
+        public Post GetById(int id)
         {
-            Comment item = null;
+            Post item = null;
 
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Get_Comment_By_Id";
+                command.CommandText = "Get_Post_By_Id";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@Id", id);
@@ -27,24 +27,38 @@ namespace Joomiz.Blog.Repository
 
                 if (reader.Read())
                 {
-                    item = FillComment(reader);
+                    item = FillPost(reader);
                 }
             }
 
             return item;
         }
 
-        public PagedList<Comment> GetByPostId(int postId, int pageNumber = 1, int pageSize = 50)
+        private Post FillPost(SqlDataReader reader)
         {
-            var list = new PagedList<Comment>();            
+            var post = new Post();
+
+            post.Id = reader.GetInt32(0);
+            post.Author = new Author();
+            post.Author.Id = reader.GetInt32(1);
+            post.Title = reader.GetValueOrDefault<string>(2);
+            post.Body = reader.GetValueOrDefault<string>(3);
+            post.IsPublished = reader.GetBoolean(4);
+            post.DateCreated = reader.GetDateTime(5);
+
+            return post;
+        }
+
+        public PagedList<Post> GetAll(int pageNumber = 1, int pageSize = 50)
+        {
+            var list = new PagedList<Post>();
 
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "List_Comment_By_PostId";
+                command.CommandText = "List_Post";
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@PostId", postId);
                 command.Parameters.AddWithValue("@PageNumber", pageNumber);
                 command.Parameters.AddWithValue("@PagSize", pageSize);
 
@@ -52,7 +66,7 @@ namespace Joomiz.Blog.Repository
 
                 while (reader.Read())
                 {
-                    list.Add(FillComment(reader));
+                    list.Add(FillPost(reader));
                 }
 
                 // get total records for paging
@@ -68,25 +82,36 @@ namespace Joomiz.Blog.Repository
             }
 
             return list;
-        }        
+        }
 
-        public void Add(Comment obj)
+        public void Add(Post obj)
         {
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Add_Comment";
+                command.CommandText = "Add_Post";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
 
-                command.Parameters.AddWithValue("@PostId", obj.PostId);
-                command.Parameters.AddWithValue("@Name", obj.Name);
-                command.Parameters.AddWithValue("@Email", obj.Email);
-                command.Parameters.AddWithValue("@Url", obj.Url);
+                command.Parameters.AddWithValue("@AuthorId", obj.Author.Id);
+                command.Parameters.AddWithValue("@Title", obj.Title);
                 command.Parameters.AddWithValue("@Body", obj.Body);
-                command.Parameters.AddWithValue("@Status", obj.Status);
+                command.Parameters.AddWithValue("@IsPublished", obj.IsPublished);
                 command.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
+
+                // Sql Server 2008 compatible
+                // http://www.mssqltips.com/sqlservertip/2112/table-value-parameters-in-sql-server-2008-and-net-c/
+                var categories = new DataTable();
+                categories.Columns.Add("Id", typeof(Int32));
+                if (obj.Categories != null)
+                {
+                    foreach (Category category in obj.Categories)
+                    {
+                        categories.Rows.Add(category.Id);
+                    }
+                }
+                command.Parameters.AddWithValue("@Categories", categories).SqlDbType = SqlDbType.Structured;
 
                 command.ExecuteNonQuery();
 
@@ -94,21 +119,19 @@ namespace Joomiz.Blog.Repository
             }
         }
 
-        public void Update(Comment obj)
+        public void Update(Post obj)
         {
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Update_Comment";
+                command.CommandText = "Update_Post";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@Id", obj.Id);
-                command.Parameters.AddWithValue("@PostId", obj.PostId);
-                command.Parameters.AddWithValue("@Name", obj.Name);
-                command.Parameters.AddWithValue("@Email", obj.Email);
-                command.Parameters.AddWithValue("@Url", obj.Url);
+                command.Parameters.AddWithValue("@AuthorId", obj.Author.Id);
+                command.Parameters.AddWithValue("@Title", obj.Title);
                 command.Parameters.AddWithValue("@Body", obj.Body);
-                command.Parameters.AddWithValue("@Status", obj.Status);
+                command.Parameters.AddWithValue("@IsPublished", obj.IsPublished);
                 command.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
 
                 command.ExecuteNonQuery();
@@ -120,7 +143,7 @@ namespace Joomiz.Blog.Repository
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Delete_Comment";
+                command.CommandText = "Delete_Post";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@Id", id);
@@ -129,29 +152,9 @@ namespace Joomiz.Blog.Repository
             }
         }
 
-        private Comment FillComment(SqlDataReader reader)
+        public IEnumerable<Post> GetAll()
         {
-            var comment = new Comment();
-            comment.Id = reader.GetInt32(0);
-            comment.PostId = reader.GetInt32(1);
-            comment.Name = reader.GetString(2);
-            comment.Email = reader.GetValueOrDefault<string>(3);
-            comment.Url = reader.GetValueOrDefault<string>(4);
-            comment.Body = reader.GetString(5);
-            comment.Status = (CommentStatus)reader.GetInt32(6);
-            comment.DateCreated = reader.GetDateTime(7);
-
-            return comment;
+            throw new NotImplementedException();
         }
-
-        public PagedList<Comment> GetAll(int pageNumber = 1, int pageSize = 50)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Comment> GetAll()
-        {
-            throw new System.NotImplementedException();
-        }       
     }
 }
