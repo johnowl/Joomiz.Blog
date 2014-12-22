@@ -1,4 +1,6 @@
 ﻿using Joomiz.Blog.Application.Contracts;
+using Joomiz.Blog.Application.Factories;
+using Joomiz.Blog.Domain.Contracts.Services;
 using Joomiz.Blog.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,32 +11,60 @@ using System.Threading.Tasks;
 namespace Joomiz.Blog.Application.Services
 {
     public class PostAppService : IPostAppService
-    {        
+    {
+        private readonly IPostService postService;
+        private readonly ICommentService commentService;
+        private readonly ICategoryService categoryService;
 
+        public PostAppService(IPostService postService, ICommentService commentService, ICategoryService categoryService)
+        {
+            this.postService = postService;
+            this.commentService = commentService;
+            this.categoryService = categoryService;
+        }
+
+        public PostAppService()
+        {
+            this.postService = ServiceFactory.GetPostService();
+            this.commentService = ServiceFactory.GetCommentService();
+            this.categoryService = ServiceFactory.GetCategoryService();
+        }
 
         public Post GetById(int id)
         {
-            throw new NotImplementedException();
+            Post post = this.postService.GetById(id);
+            post.Categories = this.categoryService.GetByPostId(id);
+
+            return post;
+        }
+
+        public Post GetByIdWithComments(int id, int commentsPageNumber = 1, int commentsPageSize = 150)
+        {
+            Post post = this.postService.GetById(id);
+            post.Categories = this.categoryService.GetByPostId(id);
+            post.Comments = this.commentService.GetByPostId(commentsPageNumber, commentsPageSize);
+            
+            return post;
         }
 
         public PagedList<Post> GetAll(int pageNumber = 1, int pageSize = 50)
         {
-            throw new NotImplementedException();
+            return this.postService.GetAll(pageNumber, pageSize);
         }
 
         public void Add(Post obj)
         {
-            throw new NotImplementedException();
+            this.postService.Add(obj);
         }
 
         public void Update(Post obj)
         {
-            throw new NotImplementedException();
+            this.postService.Update(obj);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            this.postService.Delete(id);
         }
     }
 }

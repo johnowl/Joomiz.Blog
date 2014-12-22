@@ -116,5 +116,26 @@ namespace Joomiz.Blog.Infrastructure.Repository
         {
             throw new System.NotImplementedException();
         }
+
+        public IEnumerable<Category> GetByPostId(int postId)
+        {
+            var list = new List<Category>();
+
+            using (var connection = SqlHelper.GetConnection())
+            {
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "List_Category_By_PostId";
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(FillCategory(reader));
+                }
+            }
+
+            return list;
+        }
     }
 }

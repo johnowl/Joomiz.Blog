@@ -4,6 +4,6 @@ namespace Joomiz.Blog.Application.Contracts
 {
     public interface IPostAppService : IAppServiceBase<Post>
     {
-      
+
     }
 }

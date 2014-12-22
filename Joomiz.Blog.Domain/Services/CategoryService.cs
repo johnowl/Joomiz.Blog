@@ -2,6 +2,7 @@
 using Joomiz.Blog.Domain.Contracts.Services;
 using Joomiz.Blog.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace Joomiz.Blog.Domain.Services
 {
@@ -37,6 +38,11 @@ namespace Joomiz.Blog.Domain.Services
         public void Delete(int id)
         {
             this.categoryRepository.Delete(id);
+        }
+
+        public IEnumerable<Category> GetByPostId(int postId)
+        {
+            return this.categoryRepository.GetByPostId(postId);
         }
     }
 }
