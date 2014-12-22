@@ -1,13 +1,13 @@
 ﻿using Joomiz.Blog.Domain.Contracts.Repositories;
 using Joomiz.Blog.Domain.Entities;
-using Joomiz.Blog.Repository.Helper;
+using Joomiz.Blog.Infrastructure.Repository.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
 
-namespace Joomiz.Blog.Repository
+namespace Joomiz.Blog.Infrastructure.Repository
 {
     public class PostRepository : IPostRepository
     {

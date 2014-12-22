@@ -19,6 +19,11 @@ namespace Joomiz.Blog.Domain.Services
             return this.authorRepository.GetById(id);
         }
 
+        public Author GetByNameByPassword(string name, string password)
+        {
+            return this.authorRepository.GetByNameByPassword(name, password);
+        }
+
         public PagedList<Author> GetAll(int pageNumber = 1, int pageSize = 50)
         {
             return this.authorRepository.GetAll(pageNumber, pageSize);

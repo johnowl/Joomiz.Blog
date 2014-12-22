@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Joomiz.Blog.Repository.Helper
+namespace Joomiz.Blog.Infrastructure.Repository.Helper
 {
     public static class SqlHelper
     {

@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Joomiz.Blog.Repository.SqlServer</Name>
+    <Name>Joomiz.Blog.Infrastructure.Repository.SqlServer</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{9274c361-1d01-4e98-b42f-be9720ed92a5}</ProjectGuid>
+    <ProjectGuid>{9fc85d3e-d99a-49fc-83f8-ae1b0191b310}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>Joomiz.Blog.Repository.SqlServer</RootNamespace>
-    <AssemblyName>Joomiz.Blog.Repository.SqlServer</AssemblyName>
+    <RootNamespace>Joomiz.Blog.Infrastructure.Repository.SqlServer</RootNamespace>
+    <AssemblyName>Joomiz.Blog.Infrastructure.Repository.SqlServer</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -57,36 +57,34 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Tables" />
     <Folder Include="Procedures" />
+    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
+    <Build Include="Procedures\Add_Author.sql" />
+    <Build Include="Procedures\Add_Category.sql" />
+    <Build Include="Procedures\Add_Comment.sql" />
+    <Build Include="Procedures\Add_Post.sql" />
+    <Build Include="Procedures\Delete_Author.sql" />
+    <Build Include="Procedures\Delete_Category.sql" />
+    <Build Include="Procedures\Delete_Comment.sql" />
+    <Build Include="Procedures\Delete_Post.sql" />
+    <Build Include="Procedures\Get_Author_By_Id.sql" />
+    <Build Include="Procedures\Get_Category_By_Id.sql" />
+    <Build Include="Procedures\Get_Comment_By_PostId.sql" />
+    <Build Include="Procedures\Get_Post_ById.sql" />
+    <Build Include="Procedures\List_Author.sql" />
+    <Build Include="Procedures\List_Category.sql" />
+    <Build Include="Procedures\List_Post.sql" />
+    <Build Include="Procedures\Update_Author.sql" />
+    <Build Include="Procedures\Update_Category.sql" />
+    <Build Include="Procedures\Update_Comment.sql" />
+    <Build Include="Procedures\Update_Post.sql" />
     <Build Include="Tables\Author.sql" />
     <Build Include="Tables\Category.sql" />
     <Build Include="Tables\Comment.sql" />
     <Build Include="Tables\Post.sql" />
-    <Build Include="Procedures\Get_Author_By_Id.sql" />
-    <Build Include="Procedures\List_Author.sql" />
-    <Build Include="Procedures\Add_Author.sql" />
-    <Build Include="Procedures\Update_Author.sql" />
-    <Build Include="Procedures\Delete_Author.sql" />
     <Build Include="Tables\PostCategory.sql" />
-    <Build Include="Procedures\Add_Category.sql" />
-    <Build Include="Procedures\Delete_Category.sql" />
-    <Build Include="Procedures\Get_Category_By_Id.sql" />
-    <Build Include="Procedures\List_Category.sql" />
-    <Build Include="Procedures\Update_Category.sql" />
-    <Build Include="Procedures\Add_Post.sql" />
-    <Build Include="Procedures\Delete_Post.sql" />
-    <Build Include="Procedures\Delete_Comment.sql" />
-    <Build Include="Procedures\Add_Comment.sql" />
-    <Build Include="Procedures\Get_Comment_By_PostId.sql" />
-    <Build Include="Procedures\Get_Post_ById.sql" />
-    <Build Include="Procedures\List_Post.sql" />
-    <Build Include="Procedures\Update_Post.sql" />
-    <Build Include="Procedures\Update_Comment.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="Joomiz.Blog.Repository.SqlServer.refactorlog" />
+    <Build Include="Procedures\Get_Author_By_Name_By_Password.sql" />
   </ItemGroup>
 </Project>

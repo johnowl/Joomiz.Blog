@@ -6,6 +6,6 @@ namespace Joomiz.Blog.Domain.Contracts.Repositories
 {
     public interface IPostRepository : IRepositoryBase<Post>
     {
-        
+
     }
 }

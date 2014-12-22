@@ -43,5 +43,29 @@ namespace Joomiz.Blog.Domain.Services
         {
             return this.commentRepository.GetByPostId(postId, pageNumber, pageSize);
         }
+
+        public void Approve(int commentId)
+        {
+            Comment comment = this.GetById(commentId);
+
+            if (comment == null)
+                throw new ArgumentNullException("Comment not found.");
+
+            comment.Status = CommentStatus.Approved;
+
+            this.Update(comment);
+        }
+
+        public void Reject(int commentId)
+        {
+            Comment comment = this.GetById(commentId);
+
+            if (comment == null)
+                throw new ArgumentNullException("Comment not found.");
+
+            comment.Status = CommentStatus.Rejected;
+
+            this.Update(comment);
+        }
     }
 }

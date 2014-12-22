@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Joomiz.Blog.Repository")]
+[assembly: AssemblyTitle("Joomiz.Blog.Application")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Joomiz.Blog.Repository")]
+[assembly: AssemblyProduct("Joomiz.Blog.Application")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3cb9b7b5-bb2f-4154-94ba-c190b0371482")]
+[assembly: Guid("617fb2cb-6291-4758-9a18-0524c7921f53")]
 
 // Version information for an assembly consists of the following four values:
 //
