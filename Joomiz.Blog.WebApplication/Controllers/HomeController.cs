@@ -1,6 +1,8 @@
 ﻿using Joomiz.Blog.Application.Contracts;
 using Joomiz.Blog.Application.Factories;
 using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.WebApplication.ViewModels;
+using Joomiz.Blog.WebApplication.ViewModels.Maps;
 using System.Web.Mvc;
 
 namespace Joomiz.Blog.WebApplication.Controllers
@@ -8,6 +10,7 @@ namespace Joomiz.Blog.WebApplication.Controllers
     public class HomeController : Controller
     {
         private readonly IPostAppService postAppService;
+        private readonly ICommentAppService commentAppService;
 
         public HomeController()
         {
@@ -21,16 +24,18 @@ namespace Joomiz.Blog.WebApplication.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            PagedList<Post> posts = postAppService.GetAll(pageNumber, 10);
+            var posts = postAppService.GetAll(pageNumber, 50);
+            var viewModel = new IndexViewModel(posts);
 
-            return View();
+            return View(viewModel);
         }
 
         public ActionResult Post(int id)
         {
-            Post post = postAppService.GetById(id);
-
-            return View();
+            Post post = postAppService.GetById(id, 1, 150);
+            PostViewModel postViewModel = MapToViewModel.From(post);
+            
+            return View(postViewModel);
         }
 
         public ActionResult About()

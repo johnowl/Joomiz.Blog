@@ -8,6 +8,6 @@ BEGIN
 	INSERT INTO [Category]([Name], [DateCreated]) 
 	VALUES(@Name, @DateCreated)
 
-	SET @Id = SCOPE_IDENTITY
+	SET @Id = SCOPE_IDENTITY()
 	
 END

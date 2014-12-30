@@ -38,7 +38,7 @@ namespace Joomiz.Blog.Application.Services
             return post;
         }
 
-        public Post GetByIdWithComments(int id, int commentsPageNumber = 1, int commentsPageSize = 150)
+        public Post GetById(int id, int commentsPageNumber = 1, int commentsPageSize = 150)
         {
             Post post = this.postService.GetById(id);
             post.Categories = this.categoryService.GetByPostId(id);
@@ -54,11 +54,17 @@ namespace Joomiz.Blog.Application.Services
 
         public void Add(Post obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
             this.postService.Add(obj);
         }
 
         public void Update(Post obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");            
+
             this.postService.Update(obj);
         }
 

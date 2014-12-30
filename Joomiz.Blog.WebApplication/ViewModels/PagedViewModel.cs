@@ -26,5 +26,16 @@ namespace Joomiz.Blog.WebApplication.ViewModels
                 return CurrentPage > 1;
             }
         }
+
+        public bool IsEmpty
+        {
+            get
+            {
+                if (this.Items == null)
+                    return true;
+
+                return this.Items.Count == 0;
+            }
+        }
     }
 }

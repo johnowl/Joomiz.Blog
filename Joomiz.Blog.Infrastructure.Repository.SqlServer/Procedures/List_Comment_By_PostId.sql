@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Get_Comment_By_PostId]
+﻿CREATE PROCEDURE [dbo].[List_Comment_By_PostId]
 	@PostId INT,
 	@PageNumber INT,
 	@PageSize INT	

@@ -2,7 +2,7 @@
 using Joomiz.Blog.Application.Factories;
 using Joomiz.Blog.Domain.Contracts.Services;
 using Joomiz.Blog.Domain.Entities;
-using Joomiz.Blog.Domain.Services;
+using System;
 
 namespace Joomiz.Blog.Application.Services
 {
@@ -32,11 +32,26 @@ namespace Joomiz.Blog.Application.Services
 
         public void Add(Author obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
             authorService.Add(obj);
         }
 
         public void Update(Author obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
+            var author = authorService.GetById(obj.Id);
+
+            if (author == null)
+                throw new Exception(string.Format("Author {0} not found.", obj.Id));
+
+            author.IsActive = obj.IsActive;
+            author.Name = obj.Name;
+            author.Email = obj.Email;            
+
             authorService.Update(obj);
         }
 

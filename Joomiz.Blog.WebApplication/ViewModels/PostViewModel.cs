@@ -13,6 +13,11 @@ namespace Joomiz.Blog.WebApplication.ViewModels
         [Required]
         public string Body { get; set; }
 
+        [Required]
+        public int AuthorId { get; set; }
+
+        public AuthorViewModel Author { get; set; }
+        
         public List<CommentViewModel> Comments { get; set; }
     }
 }

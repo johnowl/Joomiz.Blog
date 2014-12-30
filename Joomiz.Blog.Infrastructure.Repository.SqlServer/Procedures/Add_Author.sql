@@ -11,6 +11,6 @@ BEGIN
 	INSERT INTO [Author]([Name], [Email], [Password], [IsActive], [DateCreated]) 
 	VALUES(@Name, @Email, @Password, @IsActive, @DateCreated)
 
-	SET @Id = SCOPE_IDENTITY
+	SET @Id = SCOPE_IDENTITY()
 	
 END

@@ -16,7 +16,7 @@ BEGIN
 	INSERT INTO [Post]([AuthorId], [Title], [Body], [IsPublished], [DateCreated]) 
 	VALUES(@AuthorId, @Title, @Body, @IsPublished, @DateCreated)
 
-	SET @Id = SCOPE_IDENTITY
+	SET @Id = SCOPE_IDENTITY()
 
 	INSERT INTO [PostCategory]([PostId], [CategoryId])
 	SELECT @Id, Id FROM @Categories

@@ -60,7 +60,7 @@ namespace Joomiz.Blog.Infrastructure.Repository
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@PageNumber", pageNumber);
-                command.Parameters.AddWithValue("@PagSize", pageSize);
+                command.Parameters.AddWithValue("@PageSize", pageSize);
 
                 SqlDataReader reader = command.ExecuteReader();
 

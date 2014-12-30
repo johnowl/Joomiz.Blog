@@ -13,6 +13,6 @@ BEGIN
 	INSERT INTO [Comment]([PostId], [Name], [Email], [Url], [Body], [Status], [DateCreated]) 
 	VALUES(@PostId, @Name, @Email, @Url, @Body, @Status, @DateCreated)
 
-	SET @Id = SCOPE_IDENTITY	
+	SET @Id = SCOPE_IDENTITY()	
 	
 END

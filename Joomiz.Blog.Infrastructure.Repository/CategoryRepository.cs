@@ -127,6 +127,8 @@ namespace Joomiz.Blog.Infrastructure.Repository
                 command.CommandText = "List_Category_By_PostId";
                 command.CommandType = CommandType.StoredProcedure;
 
+                command.Parameters.AddWithValue("@PostId", postId);
+
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())

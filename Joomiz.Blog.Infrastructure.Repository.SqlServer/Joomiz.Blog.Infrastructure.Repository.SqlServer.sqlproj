@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{9fc85d3e-d99a-49fc-83f8-ae1b0191b310}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -71,7 +71,7 @@
     <Build Include="Procedures\Delete_Post.sql" />
     <Build Include="Procedures\Get_Author_By_Id.sql" />
     <Build Include="Procedures\Get_Category_By_Id.sql" />
-    <Build Include="Procedures\Get_Comment_By_PostId.sql" />
+    <Build Include="Procedures\List_Comment_By_PostId.sql" />
     <Build Include="Procedures\Get_Post_ById.sql" />
     <Build Include="Procedures\List_Author.sql" />
     <Build Include="Procedures\List_Category.sql" />
@@ -86,5 +86,9 @@
     <Build Include="Tables\Post.sql" />
     <Build Include="Tables\PostCategory.sql" />
     <Build Include="Procedures\Get_Author_By_Name_By_Password.sql" />
+    <Build Include="Procedures\List_Category_By_PostId.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SqlSchemaCompare.scmp" />
   </ItemGroup>
 </Project>

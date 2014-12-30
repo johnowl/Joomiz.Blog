@@ -46,11 +46,17 @@ namespace Joomiz.Blog.Application.Services
 
         public void Add(Comment obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
             commentService.Add(obj);
         }
 
         public void Update(Comment obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
             commentService.Update(obj);
         }
 

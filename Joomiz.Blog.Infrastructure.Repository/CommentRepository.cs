@@ -14,7 +14,7 @@ namespace Joomiz.Blog.Infrastructure.Repository
         {
             var procedure = new ProcedureSql("Get_Comment_By_Id");
 
-            procedure.Parameters.AddWithValue("@Id", id);
+            procedure.Parameters.Add(new SqlParameter("@Id", id));
 
             return procedure.Get<Comment>(FillComment);            
         }
@@ -23,24 +23,24 @@ namespace Joomiz.Blog.Infrastructure.Repository
         {
             var procedure = new ProcedureSql("List_Comment_By_PostId");
 
-            procedure.Parameters.AddWithValue("@PostId", postId);
+            procedure.Parameters.Add(new SqlParameter("@PostId", postId));
 
-            return procedure.GetPagedList<Comment>(this.FillComment, pageNumber, pageSize);            
+            return procedure.GetPagedList<Comment>(this.FillComment, pageNumber, pageSize);  
         }
 
         public void Add(Comment obj)
         {
             var procedure = new ProcedureSql("Add_Comment");
 
-            procedure.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
+            procedure.Parameters.Add(new SqlParameter(){ ParameterName = "@Id", SqlDbType = SqlDbType.Int, Direction = ParameterDirection.Output});
 
-            procedure.Parameters.AddWithValue("@PostId", obj.PostId);
-            procedure.Parameters.AddWithValue("@Name", obj.Name);
-            procedure.Parameters.AddWithValue("@Email", obj.Email);
-            procedure.Parameters.AddWithValue("@Url", obj.Url);
-            procedure.Parameters.AddWithValue("@Body", obj.Body);
-            procedure.Parameters.AddWithValue("@Status", obj.Status);
-            procedure.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
+            procedure.Parameters.Add(new SqlParameter("@PostId", obj.PostId));
+            procedure.Parameters.Add(new SqlParameter("@Name", obj.Name));
+            procedure.Parameters.Add(new SqlParameter("@Email", obj.Email));
+            procedure.Parameters.Add(new SqlParameter("@Url", obj.Url));
+            procedure.Parameters.Add(new SqlParameter("@Body", obj.Body));
+            procedure.Parameters.Add(new SqlParameter("@Status", obj.Status));
+            procedure.Parameters.Add(new SqlParameter("@DateCreated", obj.DateCreated));
 
             obj.Id = procedure.Insert();
         }
@@ -49,14 +49,14 @@ namespace Joomiz.Blog.Infrastructure.Repository
         {
             var procedure = new ProcedureSql("Update_Comment");
 
-            procedure.Parameters.AddWithValue("@Id", obj.Id);
-            procedure.Parameters.AddWithValue("@PostId", obj.PostId);
-            procedure.Parameters.AddWithValue("@Name", obj.Name);
-            procedure.Parameters.AddWithValue("@Email", obj.Email);
-            procedure.Parameters.AddWithValue("@Url", obj.Url);
-            procedure.Parameters.AddWithValue("@Body", obj.Body);
-            procedure.Parameters.AddWithValue("@Status", obj.Status);
-            procedure.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
+            procedure.Parameters.Add(new SqlParameter("@Id", obj.Id));
+            procedure.Parameters.Add(new SqlParameter("@PostId", obj.PostId));
+            procedure.Parameters.Add(new SqlParameter("@Name", obj.Name));
+            procedure.Parameters.Add(new SqlParameter("@Email", obj.Email));
+            procedure.Parameters.Add(new SqlParameter("@Url", obj.Url));
+            procedure.Parameters.Add(new SqlParameter("@Body", obj.Body));
+            procedure.Parameters.Add(new SqlParameter("@Status", obj.Status));
+            procedure.Parameters.Add(new SqlParameter("@DateCreated", obj.DateCreated));
 
             procedure.Execute();
         }
@@ -65,7 +65,7 @@ namespace Joomiz.Blog.Infrastructure.Repository
         {
             var procedure = new ProcedureSql("Delete_Comment");
 
-            procedure.Parameters.AddWithValue("@Id", id);
+            procedure.Parameters.Add(new SqlParameter(parameterName: "@Id", value: id));
 
             procedure.Execute();           
         }

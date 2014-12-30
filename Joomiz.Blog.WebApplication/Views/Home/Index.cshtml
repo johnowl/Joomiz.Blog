@@ -1,13 +1,32 @@
-﻿@{
+﻿@model Joomiz.Blog.WebApplication.ViewModels.IndexViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="row">
+
+    @if(Model.IsEmpty)
+    {
     <div class="col-md-12">
-        <h2>Lorem ipsum dolor sit amet</h2>
-        <p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius condimentum tortor. In placerat, lacus eget ultrices faucibus, lacus sem elementum erat, eget auctor ex enim vitae libero. Praesent vestibulum ex ac euismod molestie. Nunc sed lectus eros. In consequat lacus ac ullamcorper venenatis. Nam suscipit, nibh eget laoreet pretium, dolor diam iaculis sapien, eget venenatis tortor turpis eget neque. Mauris lobortis sapien quis congue tempus. Nulla pharetra tempus neque non maximus. Ut congue viverra dui, id luctus nisl pretium ac. Vestibulum efficitur ipsum id mi tincidunt, eget egestas est venenatis. In non ultrices lectus. Maecenas eget erat vitae tortor commodo tempus. In quis magna ullamcorper, rhoncus tortor ut, dignissim augue. Nunc felis lorem, hendrerit vitae erat a, pharetra ultricies augue. Proin ornare erat at velit faucibus, viverra vehicula velit congue. Sed eu risus aliquam, mattis metus nec, cursus sem.</p>
-        </p>
-        <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
+        <h2>News are coming</h2>
+        <div>
+            This blog is installed and ready to receive posts!
+        </div>
+        <p><a class="btn btn-default" href="~/Dashboard">Go to dashboard</a></p>
     </div>    
+    }
+    else    
+    {
+        foreach(var post in Model.Items)
+        {
+        <div class="col-md-12">
+            <h2>@post.Title</h2>
+            <div>
+                @post.Body
+            </div>
+            <p><a class="btn btn-default" href="~/Post/@post.Id">Learn more &raquo;</a></p>
+        </div>    
+        }
+    }
 </div>

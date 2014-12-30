@@ -8,14 +8,14 @@ namespace Joomiz.Blog.Infrastructure.Repository.Helper
     public class ProcedureSql
     {
         public string Name { get; set; }
-        public SqlParameterCollection Parameters { get; set; }
+        public List<SqlParameter> Parameters { get; set; }
 
         public ProcedureSql()
         {
-            
+            this.Parameters = new List<SqlParameter>();
         }
 
-        public ProcedureSql(string name)
+        public ProcedureSql(string name) : this()
         {
             this.Name = name;
         }
@@ -62,7 +62,7 @@ namespace Joomiz.Blog.Infrastructure.Repository.Helper
                 }
                 
                 command.Parameters.AddWithValue("@PageNumber", pageNumber);
-                command.Parameters.AddWithValue("@PagSize", pageSize);
+                command.Parameters.AddWithValue("@PageSize", pageSize);
 
                 SqlDataReader reader = command.ExecuteReader();
 
