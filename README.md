@@ -1,6 +1,6 @@
 <h1>Joomiz.Blog</h1>
 
-<p>Simple C# blog system using Domain Drive Design.</p>
+<p>Simple C# blog system using Domain Driven Design.</p>
 
 <h2>Pre-requisites</h2>
 
