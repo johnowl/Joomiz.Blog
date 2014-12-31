@@ -1,17 +1,18 @@
 ﻿using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.WebApplication.ViewModels.Base;
 using Joomiz.Blog.WebApplication.ViewModels.Maps;
 using System.Collections.Generic;
 
 namespace Joomiz.Blog.WebApplication.ViewModels
 {
-    public class IndexViewModel : PagedViewModel<PostViewModel>
-    {
-        public IndexViewModel()
+    public class PostListViewModel : PagedViewModel<PostViewModel>
+    {        
+        public PostListViewModel()
         {
 
         }
 
-        public IndexViewModel(PagedList<Post> posts)
+        public PostListViewModel(PagedList<Post> posts)
         {
             var pagedViewModel = MapToViewModel.From(posts);
 

@@ -1,4 +1,5 @@
 ﻿using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.WebApplication.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 
@@ -8,34 +9,48 @@ namespace Joomiz.Blog.WebApplication.ViewModels.Maps
     {
         public static CommentViewModel From(Comment comment)
         {
-            throw new NotImplementedException();
+            var viewModel = new CommentViewModel();
+            viewModel.Id = comment.Id;
+            viewModel.Name = comment.Name;
+            viewModel.Url = comment.Url;
+            viewModel.Email = comment.Email;
+            viewModel.Body = comment.Body;
+            viewModel.DateCreated = comment.DateCreated;
+            viewModel.IsApproved = comment.IsApproved;
+
+            return viewModel;
         }
 
         public static AuthorViewModel From(Author author)
         {
-            var authorViewModel = new AuthorViewModel();
-            authorViewModel.Id = author.Id;
-            authorViewModel.Name = author.Name;
-            authorViewModel.Email = author.Email;
+            var viewModel = new AuthorViewModel();
+            viewModel.Id = author.Id;
+            viewModel.Name = author.Name;
+            viewModel.Email = author.Email;
 
-            return authorViewModel;
+            return viewModel;
         }
 
         public static PostViewModel From(Post post)
         {
-            var postViewModel = new PostViewModel();
+            var viewModel = new PostViewModel();
 
-            postViewModel.Id = post.Id;
-            postViewModel.Title = post.Title;
-            postViewModel.Body = post.Body;
+            viewModel.Id = post.Id;
+            viewModel.Title = post.Title;
+            viewModel.Body = post.Body;
 
             if (post.Author != null)
             {
-                postViewModel.AuthorId = post.Author.Id;
-                postViewModel.Author = MapToViewModel.From(post.Author);
+                viewModel.AuthorId = post.Author.Id;
+                viewModel.Author = MapToViewModel.From(post.Author);
             }
 
-            return postViewModel;
+            if (post.Comments != null)
+            {
+                viewModel.Comments = MapToViewModel.From(post.Comments);
+            }
+
+            return viewModel;
         }
 
         public static PagedViewModel<PostViewModel> From(PagedList<Post> postList)
@@ -52,6 +67,25 @@ namespace Joomiz.Blog.WebApplication.ViewModels.Maps
             {
                 viewModel.CurrentPage = postList.PageNumber;
                 viewModel.TotalPages = (int)Math.Floor((decimal)(postList.ItemsTotal / postList.PageSize));
+            }
+
+            return viewModel;
+        }
+
+        public static PagedViewModel<CommentViewModel> From(PagedList<Comment> commentList)
+        {
+            var viewModel = new PagedViewModel<CommentViewModel>();
+            viewModel.Items = new List<CommentViewModel>();
+
+            foreach (Comment comment in commentList)
+            {
+                viewModel.Items.Add(MapToViewModel.From(comment));
+            }
+
+            if (commentList.PageNumber > 0 && commentList.PageSize > 0)
+            {
+                viewModel.CurrentPage = commentList.PageNumber;
+                viewModel.TotalPages = (int)Math.Floor((decimal)(commentList.ItemsTotal / commentList.PageSize));
             }
 
             return viewModel;

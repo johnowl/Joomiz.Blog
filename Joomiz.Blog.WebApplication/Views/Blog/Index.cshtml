@@ -1,4 +1,4 @@
-﻿@model Joomiz.Blog.WebApplication.ViewModels.IndexViewModel
+﻿@model Joomiz.Blog.WebApplication.ViewModels.PostListViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -25,7 +25,10 @@
             <div>
                 @post.Body
             </div>
-            <p><a class="btn btn-default" href="~/Post/@post.Id">Learn more &raquo;</a></p>
+            
+            <p>
+                <a href="@Url.Action("Post", new { id = post.Id })" class="btn btn-default">Learn more &raquo;</a>
+            </p>
         </div>    
         }
     }

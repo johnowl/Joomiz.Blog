@@ -42,7 +42,7 @@ namespace Joomiz.Blog.Application.Services
         {
             Post post = this.postService.GetById(id);
             post.Categories = this.categoryService.GetByPostId(id);
-            post.Comments = this.commentService.GetByPostId(commentsPageNumber, commentsPageSize);
+            post.Comments = this.commentService.GetByPostId(id, commentsPageNumber, commentsPageSize);
             
             return post;
         }

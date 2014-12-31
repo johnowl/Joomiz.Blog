@@ -11,7 +11,7 @@ namespace Joomiz.Blog.Domain.Entities
         public Author Author { get; set; }
         public IEnumerable<Category> Categories { get; set; }
         public DateTime DateCreated { get; set; }
-        public IEnumerable<Comment> Comments { get; set; }
+        public PagedList<Comment> Comments { get; set; }
         public bool IsPublished { get; set; }
     }
 }

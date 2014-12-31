@@ -108,21 +108,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\ModelStateTempDataTransfer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\AutenticationController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\PostController.cs" />
+    <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AuthorViewModel.cs" />
-    <Compile Include="ViewModels\CommentViewModel.cs" />
-    <Compile Include="ViewModels\IndexViewModel.cs" />
-    <Compile Include="ViewModels\Maps\MapToDomainEntity.cs" />
-    <Compile Include="ViewModels\Maps\MapToViewModel.cs" />
-    <Compile Include="ViewModels\PagedViewModel.cs" />
-    <Compile Include="ViewModels\PostViewModel.cs" />
+    <Compile Include="ViewModels\AddCommentViewModel.cs" />
+    <Compile Include="ViewModels\Base\AuthorViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Base\CommentViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Maps\MapToDomainEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Maps\MapToViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Base\PagedViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\PostListViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Base\PostViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\PostSingleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Blog.mdf" />
@@ -137,6 +159,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Dashboard\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -160,19 +183,26 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Blog\About.cshtml" />
+    <Content Include="Views\Blog\Contact.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Post.cshtml" />
+    <Content Include="Views\Blog\Post.cshtml" />
+    <Content Include="Views\Shared\AddComment.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Dashboard\ViewModels\" />
+    <Folder Include="Areas\Dashboard\Views\Autentication\" />
+    <Folder Include="Areas\Dashboard\Views\Category\" />
+    <Folder Include="Areas\Dashboard\Views\Comment\" />
+    <Folder Include="Areas\Dashboard\Views\Post\" />
+    <Folder Include="Areas\Dashboard\Views\Shared\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Joomiz.Blog.Application\Joomiz.Blog.Application.csproj">

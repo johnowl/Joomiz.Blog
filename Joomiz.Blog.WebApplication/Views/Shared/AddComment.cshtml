@@ -1,0 +1,22 @@
+﻿@model Joomiz.Blog.WebApplication.ViewModels.AddCommentViewModel
+
+@using (Html.BeginForm("AddComment", "Blog"))
+{
+
+    @Html.HiddenFor(model => model.PostId);
+
+    @Html.LabelFor(model => model.Name);
+    @Html.EditorFor(model => model.Name);
+    @Html.ValidationMessageFor(model => model.Name)
+
+    @Html.LabelFor(model => model.Email);
+    @Html.EditorFor(model => model.Email);
+
+    @Html.LabelFor(model => model.Url);
+    @Html.EditorFor(model => model.Url);
+
+    @Html.LabelFor(model => model.Body);
+    @Html.EditorFor(model => model.Body);
+
+    <input type="submit" value="Enviar" />
+}

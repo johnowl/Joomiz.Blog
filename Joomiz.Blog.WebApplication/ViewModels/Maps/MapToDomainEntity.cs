@@ -1,8 +1,6 @@
 ﻿using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.WebApplication.ViewModels.Base;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Joomiz.Blog.WebApplication.ViewModels.Maps
 {
