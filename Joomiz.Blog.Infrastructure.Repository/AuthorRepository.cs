@@ -1,4 +1,5 @@
-﻿using Joomiz.Blog.Domain.Contracts.Repositories;
+﻿using Joomiz.Blog.Domain.Common;
+using Joomiz.Blog.Domain.Contracts.Repositories;
 using Joomiz.Blog.Domain.Entities;
 using Joomiz.Blog.Infrastructure.Repository.Helper;
 using System;
@@ -33,18 +34,17 @@ namespace Joomiz.Blog.Infrastructure.Repository
             return author;
         }
 
-        public Author GetByNameByPassword(string name, string password)
+        public Author GetByName(string name)
         {
             Author author = null;
 
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Get_Author_By_Name_By_Password";
+                command.CommandText = "Get_Author_By_Name";
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@Name", name);
-                command.Parameters.AddWithValue("@Password", password);
 
                 SqlDataReader reader = command.ExecuteReader();
 

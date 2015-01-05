@@ -1,5 +1,7 @@
-﻿using Joomiz.Blog.Domain.Contracts.Repositories;
+﻿using Joomiz.Blog.Domain.Common;
+using Joomiz.Blog.Domain.Contracts.Repositories;
 using Joomiz.Blog.Domain.Contracts.Services;
+using Joomiz.Blog.Domain.Contracts.Validation;
 using Joomiz.Blog.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,10 +11,12 @@ namespace Joomiz.Blog.Domain.Services
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository categoryRepository;
+        private readonly ICategoryValidation categoryValidation;
 
-        public CategoryService(ICategoryRepository categoryRepository)
+        public CategoryService(ICategoryRepository categoryRepository, ICategoryValidation categoryValidation)
         {
             this.categoryRepository = categoryRepository;
+            this.categoryValidation = categoryValidation;
         }
 
         public Category GetById(int id)
@@ -25,14 +29,30 @@ namespace Joomiz.Blog.Domain.Services
             return this.categoryRepository.GetAll(pageNumber, pageSize);
         }
 
-        public void Add(Category obj)
+        public bool Add(Category obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
+            if (!this.categoryValidation.Validate(obj))
+                return false;
+
             this.categoryRepository.Add(obj);
+
+            return true;
         }
 
-        public void Update(Category obj)
+        public bool Update(Category obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
+            if (!this.categoryValidation.Validate(obj))
+                return false;
+
             this.categoryRepository.Update(obj);
+
+            return true;
         }
 
         public void Delete(int id)

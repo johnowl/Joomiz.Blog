@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Joomiz.Blog.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,6 +19,16 @@ namespace Joomiz.Blog.Infrastructure.Repository.Helper
         public ProcedureSql(string name) : this()
         {
             this.Name = name;
+        }
+
+        public void AddParameter(string name, object value)
+        {
+            this.Parameters.Add(new SqlParameter(name, value));
+        }
+
+        public void AddParameter(string name, SqlDbType sqlDbType, ParameterDirection direction)
+        {
+            this.Parameters.Add(new SqlParameter() { ParameterName = name, SqlDbType = sqlDbType, Direction = direction });
         }
 
         public IEnumerable<T> GetList<T>(Func<SqlDataReader, T> createObjectFunction)

@@ -1,24 +1,37 @@
 ﻿using Joomiz.Blog.Application.Contracts;
 using Joomiz.Blog.Application.Factories;
+using Joomiz.Blog.Domain.Common;
+using Joomiz.Blog.Domain.Contracts.Repositories;
 using Joomiz.Blog.Domain.Contracts.Services;
+using Joomiz.Blog.Domain.Contracts.Validation;
 using Joomiz.Blog.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace Joomiz.Blog.Application.Services
 {
     public class AuthorAppService : IAuthorAppService
     {
         private readonly IAuthorService authorService;
+        private readonly IAuthorValidation authorValidation;
 
-        public AuthorAppService(IAuthorService authorService)
+        public AuthorAppService(IAuthorService authorService, IAuthorValidation authorValidation)
         {
             this.authorService = authorService;
+            this.authorValidation = authorValidation;
         }
 
         public AuthorAppService()
         {
-            this.authorService = ServiceFactory.GetAuthorService();
+            var authorRepository = RepositoryFactory.GetAuthorRepository();
+            this.authorValidation = ValidationFactory.GetAuthorValidation(authorRepository);
+            this.authorService = ServiceFactory.GetAuthorService(authorRepository, this.authorValidation);
         }
+
+        public Dictionary<string, string> GetValidationErrors()
+        {
+            return this.authorValidation.GetErrors();
+        }        
 
         public Author GetById(int id)
         {
@@ -30,29 +43,14 @@ namespace Joomiz.Blog.Application.Services
             return authorService.GetAll(pageNumber, pageSize);
         }
 
-        public void Add(Author obj)
-        {
-            if (obj == null)
-                throw new NullReferenceException("obj");
-
-            authorService.Add(obj);
+        public bool Add(Author obj)
+        {            
+            return authorService.Add(obj);
         }
 
-        public void Update(Author obj)
+        public bool Update(Author obj)
         {
-            if (obj == null)
-                throw new NullReferenceException("obj");
-
-            var author = authorService.GetById(obj.Id);
-
-            if (author == null)
-                throw new Exception(string.Format("Author {0} not found.", obj.Id));
-
-            author.IsActive = obj.IsActive;
-            author.Name = obj.Name;
-            author.Email = obj.Email;            
-
-            authorService.Update(obj);
+            return authorService.Update(obj);
         }
 
         public void Delete(int id)

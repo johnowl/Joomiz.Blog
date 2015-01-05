@@ -40,6 +40,12 @@
     <Compile Include="Contracts\Services\IPostService.cs" />
     <Compile Include="Contracts\Services\IAuthorService.cs" />
     <Compile Include="Contracts\Services\IServiceBase.cs" />
+    <Compile Include="Contracts\Validation\ICategoryValidation.cs" />
+    <Compile Include="Contracts\Validation\IAuthorValidation.cs" />
+    <Compile Include="Contracts\Validation\ICommentValidation.cs" />
+    <Compile Include="Contracts\Validation\IPostValidation.cs" />
+    <Compile Include="Validation\CommentValidation.cs" />
+    <Compile Include="Validation\AuthorValidation.cs" />
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Comment.cs" />
@@ -51,7 +57,10 @@
     <Compile Include="Services\CommentService.cs" />
     <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\AuthorService.cs" />
-    <Compile Include="Util\PagedList.cs" />
+    <Compile Include="Common\PagedList.cs" />
+    <Compile Include="Contracts\Validation\IValidation.cs" />
+    <Compile Include="Validation\CategoryValidation.cs" />
+    <Compile Include="Validation\PostValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

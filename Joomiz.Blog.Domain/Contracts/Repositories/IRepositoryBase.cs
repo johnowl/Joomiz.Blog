@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Common;
 
 namespace Joomiz.Blog.Domain.Contracts.Repositories
 {

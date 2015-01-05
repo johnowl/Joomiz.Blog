@@ -1,4 +1,5 @@
-﻿using Joomiz.Blog.Domain.Entities;
+﻿using Joomiz.Blog.Domain.Common;
+using Joomiz.Blog.Domain.Entities;
 using System;
 
 namespace Joomiz.Blog.Domain.Contracts.Services
@@ -7,8 +8,8 @@ namespace Joomiz.Blog.Domain.Contracts.Services
     {
         T GetById(int id);
         PagedList<T> GetAll(int pageNumber = 1, int pageSize = 50);
-        void Add(T obj);
-        void Update(T obj);
+        bool Add(T obj);
+        bool Update(T obj);
         void Delete(int id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Joomiz.Blog.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace Joomiz.Blog.Domain.Entities

@@ -85,7 +85,7 @@
     <Build Include="Tables\Comment.sql" />
     <Build Include="Tables\Post.sql" />
     <Build Include="Tables\PostCategory.sql" />
-    <Build Include="Procedures\Get_Author_By_Name_By_Password.sql" />
+    <Build Include="Procedures\Get_Author_By_Name.sql" />
     <Build Include="Procedures\List_Category_By_PostId.sql" />
   </ItemGroup>
   <ItemGroup>

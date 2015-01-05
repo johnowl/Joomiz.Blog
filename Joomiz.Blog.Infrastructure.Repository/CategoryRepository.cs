@@ -1,4 +1,5 @@
-﻿using Joomiz.Blog.Domain.Contracts.Repositories;
+﻿using Joomiz.Blog.Domain.Common;
+using Joomiz.Blog.Domain.Contracts.Repositories;
 using Joomiz.Blog.Domain.Entities;
 using Joomiz.Blog.Infrastructure.Repository.Helper;
 using System;
@@ -12,94 +13,47 @@ namespace Joomiz.Blog.Infrastructure.Repository
     {
         public Category GetById(int id)
         {
-            Category author = null;
+            var procedure = new ProcedureSql("Get_Category_By_Id");
 
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Get_Category_By_Id";
-                command.CommandType = CommandType.StoredProcedure;
+            procedure.AddParameter("@Id", id);
 
-                command.Parameters.AddWithValue("@Id", id);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    author = FillCategory(reader);
-                }
-            }
-
-            return author;
+            return procedure.Get<Category>(this.FillCategory);           
         }
 
         public IEnumerable<Category> GetAll()
         {
-            var list = new List<Category>();
-
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "List_Category";
-                command.CommandType = CommandType.StoredProcedure;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    list.Add(FillCategory(reader));
-                }
-            }
-
-            return list;
+            var procedure = new ProcedureSql("List_Category");
+            return procedure.GetList<Category>(FillCategory);            
         }
 
         public void Add(Category obj)
         {
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Add_Category";
-                command.CommandType = CommandType.StoredProcedure;
+            var procedure = new ProcedureSql("Add_Category");
 
-                command.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
+            procedure.AddParameter("@Id", SqlDbType.Int, ParameterDirection.Output);
+            procedure.AddParameter("@Name", obj.Name);
+            procedure.AddParameter("@DateCreated", obj.DateCreated);
 
-                command.Parameters.AddWithValue("@Name", obj.Name);                
-                command.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
-
-                command.ExecuteNonQuery();
-
-                obj.Id = Convert.ToInt32(command.Parameters["Id"].Value);
-            }
+            obj.Id = procedure.Insert();            
         }
 
         public void Update(Category obj)
         {
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Update_Category";
-                command.CommandType = CommandType.StoredProcedure;
+            var procedure = new ProcedureSql("Update_Category");
 
-                command.Parameters.AddWithValue("@Id", obj.Id);
-                command.Parameters.AddWithValue("@Name", obj.Name);
+            procedure.AddParameter("@Id", obj.Id);
+            procedure.AddParameter("@Name", obj.Name);
 
-                command.ExecuteNonQuery();
-            }
+            procedure.Execute();
         }
 
         public void Delete(int id)
         {
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Delete_Category";
-                command.CommandType = CommandType.StoredProcedure;
+            var procedure = new ProcedureSql("Delete_Category");
 
-                command.Parameters.AddWithValue("@Id", id);
+            procedure.AddParameter("@Id", id);
 
-                command.ExecuteNonQuery();
-            }
+            procedure.Execute();            
         }
 
         private Category FillCategory(SqlDataReader reader)
@@ -119,25 +73,11 @@ namespace Joomiz.Blog.Infrastructure.Repository
 
         public IEnumerable<Category> GetByPostId(int postId)
         {
-            var list = new List<Category>();
+            var procedure = new ProcedureSql("List_Category_By_PostId");
 
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "List_Category_By_PostId";
-                command.CommandType = CommandType.StoredProcedure;
+            procedure.AddParameter("@PostId", postId);
 
-                command.Parameters.AddWithValue("@PostId", postId);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    list.Add(FillCategory(reader));
-                }
-            }
-
-            return list;
+            return procedure.GetList<Category>(FillCategory);            
         }
     }
 }

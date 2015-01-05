@@ -5,6 +5,7 @@ namespace Joomiz.Blog.Domain.Contracts.Services
 {
     public interface IAuthorService : IServiceBase<Author>
     {
-        Author GetByNameByPassword(string name, string password);
+        Author GetByName(string name);
+        void ChangePassword(string name, string password, string newPassword);
     }
 }

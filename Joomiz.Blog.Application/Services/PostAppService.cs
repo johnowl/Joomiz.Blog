@@ -1,6 +1,8 @@
 ﻿using Joomiz.Blog.Application.Contracts;
 using Joomiz.Blog.Application.Factories;
+using Joomiz.Blog.Domain.Common;
 using Joomiz.Blog.Domain.Contracts.Services;
+using Joomiz.Blog.Domain.Contracts.Validation;
 using Joomiz.Blog.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,20 +17,28 @@ namespace Joomiz.Blog.Application.Services
         private readonly IPostService postService;
         private readonly ICommentService commentService;
         private readonly ICategoryService categoryService;
+        private readonly IPostValidation postValidation;
 
-        public PostAppService(IPostService postService, ICommentService commentService, ICategoryService categoryService)
+        public PostAppService(IPostService postService, ICommentService commentService, ICategoryService categoryService, IPostValidation postValidation)
         {
             this.postService = postService;
             this.commentService = commentService;
             this.categoryService = categoryService;
+            this.postValidation = postValidation;
         }
 
         public PostAppService()
         {
-            this.postService = ServiceFactory.GetPostService();
-            this.commentService = ServiceFactory.GetCommentService();
-            this.categoryService = ServiceFactory.GetCategoryService();
+            this.postValidation = ValidationFactory.GetPostValidation();
+            this.postService = ServiceFactory.GetPostService(RepositoryFactory.GetPostRepository(), this.postValidation);
+            this.commentService = ServiceFactory.GetCommentService(RepositoryFactory.GetCommentRepository(), null);
+            this.categoryService = ServiceFactory.GetCategoryService(RepositoryFactory.GetCategoryRepository(), null);
         }
+
+        public Dictionary<string, string> GetValidationErrors()
+        {
+            return this.postValidation.GetErrors();
+        }  
 
         public Post GetById(int id)
         {
@@ -52,20 +62,14 @@ namespace Joomiz.Blog.Application.Services
             return this.postService.GetAll(pageNumber, pageSize);
         }
 
-        public void Add(Post obj)
-        {
-            if (obj == null)
-                throw new NullReferenceException("obj");
-
-            this.postService.Add(obj);
+        public bool Add(Post obj)
+        {            
+            return this.postService.Add(obj);
         }
 
-        public void Update(Post obj)
+        public bool Update(Post obj)
         {
-            if (obj == null)
-                throw new NullReferenceException("obj");            
-
-            this.postService.Update(obj);
+            return this.postService.Update(obj);
         }
 
         public void Delete(int id)

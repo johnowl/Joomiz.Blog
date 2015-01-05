@@ -1,4 +1,5 @@
 ﻿using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Common;
 using System;
 
 namespace Joomiz.Blog.Domain.Contracts.Services

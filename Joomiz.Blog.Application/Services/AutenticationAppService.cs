@@ -1,6 +1,7 @@
 ﻿using Joomiz.Blog.Application.Contracts;
 using Joomiz.Blog.Application.Factories;
 using Joomiz.Blog.Domain.Contracts.Services;
+using Joomiz.Blog.Domain.Contracts.Validation;
 using Joomiz.Blog.Domain.Entities;
 using System;
 
@@ -9,35 +10,34 @@ namespace Joomiz.Blog.Application.Services
     public class AutenticationAppService : IAutenticationAppService
     {
         private readonly IAuthorService authorService;
+        private readonly IAuthorValidation authorValidation;
 
-        public AutenticationAppService(IAuthorService authorService)
+        public AutenticationAppService(IAuthorService authorService, IAuthorValidation authorValidation)
         {
             this.authorService = authorService;
+            this.authorValidation = authorValidation;
         }
 
         public AutenticationAppService()
         {
-            this.authorService = ServiceFactory.GetAuthorService();
+            var authorRepository = RepositoryFactory.GetAuthorRepository();
+            this.authorValidation = ValidationFactory.GetAuthorValidation(authorRepository);
+            this.authorService = ServiceFactory.GetAuthorService(authorRepository, authorValidation);
         }
 
         public Author Login(string name, string password)
-        {
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
+        {           
+            Author author = this.authorService.GetByName(name);
 
-            return this.authorService.GetByNameByPassword(name, password);
+            if (author.Password == password)
+                return author;
+
+            return null;
         }
 
         public void ChangePassword(string name, string password, string newPassword)
         {
-            Author author = this.authorService.GetByNameByPassword(name, password);
-
-            if (author == null)
-                throw new Exception("Not found an author with provided information.");
-
-            author.Password = newPassword;
-
-            this.authorService.Update(author);
+            this.authorService.ChangePassword(name, password, newPassword);
         }
     }
 }

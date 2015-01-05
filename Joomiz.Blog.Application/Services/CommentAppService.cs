@@ -1,25 +1,35 @@
 ﻿using Joomiz.Blog.Application.Contracts;
 using Joomiz.Blog.Application.Factories;
+using Joomiz.Blog.Domain.Common;
 using Joomiz.Blog.Domain.Contracts.Services;
+using Joomiz.Blog.Domain.Contracts.Validation;
 using Joomiz.Blog.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace Joomiz.Blog.Application.Services
 {
     public class CommentAppService : ICommentAppService
     {
         private readonly ICommentService commentService;
+        private readonly ICommentValidation commentValidation;
 
         public CommentAppService()
         {
-            this.commentService = ServiceFactory.GetCommentService();
+            this.commentValidation = ValidationFactory.GetCommentValidation();
+            this.commentService = ServiceFactory.GetCommentService(RepositoryFactory.GetCommentRepository(), this.commentValidation);
         }
 
         public CommentAppService(ICommentService commentService)
         {
             this.commentService = commentService;
         }
-        
+
+        public Dictionary<string, string> GetValidationErrors()
+        {
+            return this.commentValidation.GetErrors();
+        }   
+
         public void Approve(int commentId, int authorId)
         {
             // the authorId parameter will be used in near future for logging purposes.
@@ -44,20 +54,14 @@ namespace Joomiz.Blog.Application.Services
             return commentService.GetAll(pageNumber, pageSize);
         }
 
-        public void Add(Comment obj)
+        public bool Add(Comment obj)
         {
-            if (obj == null)
-                throw new NullReferenceException("obj");
-
-            commentService.Add(obj);
+            return commentService.Add(obj);
         }
 
-        public void Update(Comment obj)
+        public bool Update(Comment obj)
         {
-            if (obj == null)
-                throw new NullReferenceException("obj");
-
-            commentService.Update(obj);
+            return commentService.Update(obj);
         }
 
         public void Delete(int id)

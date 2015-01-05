@@ -2,16 +2,20 @@
 using Joomiz.Blog.Domain.Entities;
 using Joomiz.Blog.Domain.Contracts.Services;
 using Joomiz.Blog.Domain.Contracts.Repositories;
+using Joomiz.Blog.Domain.Common;
+using Joomiz.Blog.Domain.Contracts.Validation;
 
 namespace Joomiz.Blog.Domain.Services
 {
     public class CommentService : ICommentService
     {
         private readonly ICommentRepository commentRepository;
+        private readonly ICommentValidation commentValidation;
 
-        public CommentService(ICommentRepository commentRepository)
+        public CommentService(ICommentRepository commentRepository, ICommentValidation validation)
         {
             this.commentRepository = commentRepository;
+            this.commentValidation = validation;
         }
        
         public Comment GetById(int id)
@@ -24,14 +28,30 @@ namespace Joomiz.Blog.Domain.Services
             return this.commentRepository.GetAll(pageNumber, pageSize);
         }
 
-        public void Add(Comment obj)
+        public bool Add(Comment obj)
         {
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
+            if (!this.commentValidation.Validate(obj))
+                return false;
+
             this.commentRepository.Add(obj);
+
+            return true;
         }
 
-        public void Update(Comment obj)
+        public bool Update(Comment obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+                throw new NullReferenceException("obj");
+
+            if (!this.commentValidation.Validate(obj))
+                return false;
+
+            this.commentRepository.Update(obj);
+
+            return true;
         }
 
         public void Delete(int id)

@@ -38,6 +38,7 @@
     <Compile Include="Factories\RepositoryFactory.cs" />
     <Compile Include="Factories\AppServiceFactory.cs" />
     <Compile Include="Factories\ServiceFactory.cs" />
+    <Compile Include="Factories\ValidationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AutenticationAppService.cs" />
     <Compile Include="Services\AuthorAppService.cs" />

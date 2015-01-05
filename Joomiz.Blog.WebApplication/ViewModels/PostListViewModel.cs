@@ -1,4 +1,5 @@
-﻿using Joomiz.Blog.Domain.Entities;
+﻿using Joomiz.Blog.Domain.Common;
+using Joomiz.Blog.Domain.Entities;
 using Joomiz.Blog.WebApplication.ViewModels.Base;
 using Joomiz.Blog.WebApplication.ViewModels.Maps;
 using System.Collections.Generic;
