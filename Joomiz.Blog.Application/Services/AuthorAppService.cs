@@ -38,6 +38,11 @@ namespace Joomiz.Blog.Application.Services
             return authorService.GetById(id);
         }
 
+        public void ChangePassword(string name, string password, string newPassword)
+        {
+            this.authorService.ChangePassword(name, password, newPassword);
+        }
+
         public PagedList<Author> GetAll(int pageNumber = 1, int pageSize = 50)
         {
             return authorService.GetAll(pageNumber, pageSize);

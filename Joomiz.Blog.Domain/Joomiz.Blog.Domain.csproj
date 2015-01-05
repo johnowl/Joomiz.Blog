@@ -35,6 +35,7 @@
     <Compile Include="Contracts\Repositories\ICommentRepository.cs" />
     <Compile Include="Contracts\Repositories\IPostRepository.cs" />
     <Compile Include="Contracts\Repositories\IRepositoryBase.cs" />
+    <Compile Include="Contracts\Services\IAuthenticationService.cs" />
     <Compile Include="Contracts\Services\ICategoryService.cs" />
     <Compile Include="Contracts\Services\ICommentService.cs" />
     <Compile Include="Contracts\Services\IPostService.cs" />
