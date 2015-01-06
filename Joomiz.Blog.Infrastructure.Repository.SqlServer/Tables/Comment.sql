@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Comment]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
     [PostId] INT NOT NULL, 
     [Name] VARCHAR(70) NOT NULL, 
     [Email] VARCHAR(100) NULL, 

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Post]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
     [AuthorId] INT NOT NULL, 
     [Title] VARCHAR(1024) NULL, 
     [Body] TEXT NULL, 

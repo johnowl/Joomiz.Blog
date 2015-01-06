@@ -145,7 +145,7 @@ namespace Joomiz.Blog.Infrastructure.Repository.Helper
             }
         }
 
-        public int Insert(string key = "Id")
+        public int Insert(string key = "@Id")
         {
             using (var connection = SqlHelper.GetConnection())
             {
@@ -160,7 +160,7 @@ namespace Joomiz.Blog.Infrastructure.Repository.Helper
 
                 command.ExecuteNonQuery();
 
-                return Convert.ToInt32(command.Parameters["Id"].Value);
+                return Convert.ToInt32(command.Parameters[key].Value);
             }
         }
 

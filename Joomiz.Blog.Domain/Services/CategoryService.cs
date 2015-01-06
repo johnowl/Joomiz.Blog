@@ -34,8 +34,10 @@ namespace Joomiz.Blog.Domain.Services
             if (obj == null)
                 throw new NullReferenceException("obj");
 
+            obj.DateCreated = DateTime.UtcNow;
+
             if (!this.categoryValidation.Validate(obj))
-                return false;
+                return false;            
 
             this.categoryRepository.Add(obj);
 

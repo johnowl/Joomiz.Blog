@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Author]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
     [Name] VARCHAR(70) NOT NULL, 
     [Email] VARCHAR(70) NOT NULL, 
     [Password] VARCHAR(32) NOT NULL, 
