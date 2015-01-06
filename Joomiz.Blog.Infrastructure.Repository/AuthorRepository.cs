@@ -13,124 +13,61 @@ namespace Joomiz.Blog.Infrastructure.Repository
     {
         public Author GetById(int id)
         {
-            Author author = null;
+            var procedure = new ProcedureSql("Get_Author_By_Id");
 
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Get_Author_By_Id";
-                command.CommandType = CommandType.StoredProcedure;
+            procedure.AddParameter("@Id", id);
 
-                command.Parameters.AddWithValue("@Id", id);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    author = FillAuthor(reader);
-                }
-            }
-
-            return author;
+            return procedure.Get<Author>(this.FillAuthor);            
         }
 
         public Author GetByName(string name)
         {
-            Author author = null;
+            var procedure = new ProcedureSql("Get_Author_By_Name");
 
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Get_Author_By_Name";
-                command.CommandType = CommandType.StoredProcedure;
+            procedure.AddParameter("@Name", name);
 
-                command.Parameters.AddWithValue("@Name", name);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    author = FillAuthor(reader);
-                }
-            }
-
-            return author;
+            return procedure.Get<Author>(this.FillAuthor);            
         }
 
         public IEnumerable<Author> GetAll()
         {
-            var list = new List<Author>();
+            var procedure = new ProcedureSql("List_Author");
 
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "List_Author";
-                command.CommandType = CommandType.StoredProcedure;
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    list.Add(FillAuthor(reader));
-                }
-            }
-
-            return list;
+            return procedure.GetList<Author>(this.FillAuthor);            
         }
 
         public void Add(Author obj)
         {
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Add_Author";
-                command.CommandType = CommandType.StoredProcedure;
+            var procedure = new ProcedureSql("Add_Author");
 
-                command.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
+            procedure.AddParameter("@Id", SqlDbType.Int, ParameterDirection.Output);
+            procedure.AddParameter("@Name", obj.Name);
+            procedure.AddParameter("@Email", obj.Email);
+            procedure.AddParameter("@Password", obj.Password);
+            procedure.AddParameter("@IsActive", obj.IsActive);
+            procedure.AddParameter("@DateCreated", obj.DateCreated);
 
-                command.Parameters.AddWithValue("@Name", obj.Name);
-                command.Parameters.AddWithValue("@Email", obj.Email);
-                command.Parameters.AddWithValue("@Password", obj.Password);
-                command.Parameters.AddWithValue("@IsActive", obj.IsActive);
-                command.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
-
-                command.ExecuteNonQuery();
-
-                obj.Id = Convert.ToInt32(command.Parameters["Id"].Value);
-            }
+            obj.Id = procedure.Insert();            
         }
 
         public void Update(Author obj)
         {
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Update_Author";
-                command.CommandType = CommandType.StoredProcedure;
+            var procedure = new ProcedureSql("Update_Author");
 
-                command.Parameters.AddWithValue("@Id", obj.Id);
+            procedure.AddParameter("@Id", obj.Id);
+            procedure.AddParameter("@Name", obj.Name);
+            procedure.AddParameter("@Email", obj.Email);
+            procedure.AddParameter("@Password", obj.Password);
+            procedure.AddParameter("@IsActive", obj.IsActive);
 
-                command.Parameters.AddWithValue("@Name", obj.Name);
-                command.Parameters.AddWithValue("@Email", obj.Email);
-                command.Parameters.AddWithValue("@Password", obj.Password);
-                command.Parameters.AddWithValue("@IsActive", obj.IsActive);
-
-                command.ExecuteNonQuery();
-            }
+            procedure.Execute();          
         }
 
         public void Delete(int id)
         {
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Delete_Author";
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@Id", id);
-
-                command.ExecuteNonQuery();
-            }
+            var procedure = new ProcedureSql("Delete_Author");
+            procedure.AddParameter("@Id", id);
+            procedure.Execute();            
         }
 
         private Author FillAuthor(SqlDataReader reader)

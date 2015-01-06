@@ -1,4 +1,4 @@
-﻿@model Joomiz.Blog.WebApplication.ViewModels.PostListViewModel
+﻿@model Joomiz.Blog.WebApplication.ViewModels.Blog.IndexViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -6,7 +6,7 @@
 
 <div class="row">
 
-    @if(Model.IsEmpty)
+    @if(Model.IsEmpty())
     {
     <div class="col-md-12">
         <h2>News are coming</h2>
@@ -18,7 +18,7 @@
     }
     else    
     {
-        foreach(var post in Model.Items)
+        foreach(var post in Model.Posts)
         {
         <div class="col-md-12">
             <h2>@post.Title</h2>

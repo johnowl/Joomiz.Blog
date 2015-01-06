@@ -31,6 +31,11 @@ namespace Joomiz.Blog.Infrastructure.Repository.Helper
             this.Parameters.Add(new SqlParameter() { ParameterName = name, SqlDbType = sqlDbType, Direction = direction });
         }
 
+        public void AddParameter(string name, object value, SqlDbType sqlDbType)
+        {
+            this.Parameters.Add(new SqlParameter() { ParameterName = name, SqlDbType = sqlDbType, Value = value });
+        }
+
         public IEnumerable<T> GetList<T>(Func<SqlDataReader, T> createObjectFunction)
         {
             var list = new List<T>();
@@ -158,5 +163,7 @@ namespace Joomiz.Blog.Infrastructure.Repository.Helper
                 return Convert.ToInt32(command.Parameters["Id"].Value);
             }
         }
+
+
     }
 }

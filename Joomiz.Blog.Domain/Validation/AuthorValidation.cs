@@ -10,7 +10,7 @@ namespace Joomiz.Blog.Domain.Validation
     {
         private readonly IAuthorRepository authorRepository;
 
-        private Dictionary<string, string> ErrorList { get; set; }
+        protected Dictionary<string, string> ErrorList { get; private set; }
 
         public AuthorValidation(IAuthorRepository authorRepository)
         {

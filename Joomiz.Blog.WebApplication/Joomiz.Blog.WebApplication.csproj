@@ -121,30 +121,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ControllerHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AddCommentViewModel.cs" />
-    <Compile Include="ViewModels\Base\AuthorViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\Base\CommentViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\Maps\MapToDomainEntity.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\Maps\MapToViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\Base\PagedViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\PostListViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\Base\PostViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\PostSingleViewModel.cs" />
+    <Compile Include="ViewModels\Blog\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Blog\PostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Blog.mdf" />

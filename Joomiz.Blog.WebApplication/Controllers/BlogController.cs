@@ -2,9 +2,10 @@
 using Joomiz.Blog.Application.Factories;
 using Joomiz.Blog.Domain.Entities;
 using Joomiz.Blog.WebApplication.ActionFilters;
+using Joomiz.Blog.WebApplication.Helpers;
 using Joomiz.Blog.WebApplication.ViewModels;
-using Joomiz.Blog.WebApplication.ViewModels.Base;
-using Joomiz.Blog.WebApplication.ViewModels.Maps;
+using Joomiz.Blog.WebApplication.ViewModels.Blog;
+using System;
 using System.Web.Mvc;
 
 namespace Joomiz.Blog.WebApplication.Controllers
@@ -12,10 +13,12 @@ namespace Joomiz.Blog.WebApplication.Controllers
     public class BlogController : Controller
     {
         private readonly IPostAppService postAppService;
+        private readonly ICommentAppService commentAppService;
 
         public BlogController()
         {
             this.postAppService = AppServiceFactory.GetPostService();
+            this.commentAppService = AppServiceFactory.GetCommentService();
         }
 
         public BlogController(IPostAppService postAppService)
@@ -25,8 +28,8 @@ namespace Joomiz.Blog.WebApplication.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var posts = postAppService.GetAll(pageNumber, 50);
-            var viewModel = new PostListViewModel(posts);
+            var viewModel = new IndexViewModel();
+            viewModel.Posts = postAppService.GetAll(pageNumber, 50);
 
             return View(viewModel);
         }
@@ -34,27 +37,19 @@ namespace Joomiz.Blog.WebApplication.Controllers
         [ImportModelStateFromTempData]
         public ActionResult Post(int id)
         {
-            Post post = postAppService.GetById(id, 1, 150);
-            PostSingleViewModel viewModel = new PostSingleViewModel(post);
-
-            if (ViewData["commentViewModel"] != null)
-                viewModel.NewComment = ViewData["newCommentViewModel"] as AddCommentViewModel;
+            var viewModel = new PostViewModel();
+            viewModel.Post = postAppService.GetById(id, 1, 150);
 
             return View(viewModel);
         }
 
         [HttpPost, ExportModelStateToTempData]
-        public ActionResult AddComment(AddCommentViewModel commentViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                // gravar o comentário
-            }            
+        public ActionResult AddComment(Comment comment)
+        {           
+            if (!this.commentAppService.Add(comment))
+                ControllerHelpers.AddErrors(this.commentAppService.GetValidationErrors(), ModelState);            
 
-            ViewData["newCommentViewModel"] = commentViewModel;
-            ViewData["ModelState"] = ModelState;
-
-            return RedirectToAction("Post", new { id = commentViewModel.PostId });
+            return RedirectToAction("Post", new { id = comment.PostId });
         }
 
         public ActionResult About()

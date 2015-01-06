@@ -45,6 +45,7 @@
     <Compile Include="Contracts\Validation\IAuthorValidation.cs" />
     <Compile Include="Contracts\Validation\ICommentValidation.cs" />
     <Compile Include="Contracts\Validation\IPostValidation.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Validation\CommentValidation.cs" />
     <Compile Include="Validation\AuthorValidation.cs" />
     <Compile Include="Entities\Author.cs" />

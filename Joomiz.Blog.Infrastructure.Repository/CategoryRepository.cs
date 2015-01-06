@@ -50,9 +50,7 @@ namespace Joomiz.Blog.Infrastructure.Repository
         public void Delete(int id)
         {
             var procedure = new ProcedureSql("Delete_Category");
-
             procedure.AddParameter("@Id", id);
-
             procedure.Execute();            
         }
 
@@ -62,7 +60,6 @@ namespace Joomiz.Blog.Infrastructure.Repository
             author.Id = reader.GetInt32(0);
             author.Name = reader.GetString(1);           
             author.DateCreated = reader.GetDateTime(2);
-
             return author;
         }
 
@@ -74,9 +71,7 @@ namespace Joomiz.Blog.Infrastructure.Repository
         public IEnumerable<Category> GetByPostId(int postId)
         {
             var procedure = new ProcedureSql("List_Category_By_PostId");
-
             procedure.AddParameter("@PostId", postId);
-
             return procedure.GetList<Category>(FillCategory);            
         }
     }

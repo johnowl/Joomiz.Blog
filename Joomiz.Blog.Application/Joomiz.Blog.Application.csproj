@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IAppService.cs" />
     <Compile Include="Contracts\IAppServiceBase.cs" />
     <Compile Include="Contracts\IAutenticationAppService.cs" />
     <Compile Include="Contracts\IAuthorAppService.cs" />

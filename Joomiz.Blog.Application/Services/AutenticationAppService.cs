@@ -9,27 +9,24 @@ namespace Joomiz.Blog.Application.Services
 {
     public class AutenticationAppService : IAutenticationAppService
     {
-        private readonly IAuthorService authorService;
+        private readonly IAuthenticationService authenticationService;
 
-        public AutenticationAppService(IAuthorService authorService)
+        public AutenticationAppService(IAuthenticationService authenticationService)
         {
-            this.authorService = authorService;
+            this.authenticationService = authenticationService;
         }
 
         public AutenticationAppService()
         {
             var authorRepository = RepositoryFactory.GetAuthorRepository();
-            this.authorService = ServiceFactory.GetAuthorService(authorRepository, null);
+            var authorService = ServiceFactory.GetAuthorService(authorRepository, null);
+
+            this.authenticationService = ServiceFactory.GetAuthenticationService(authorService);
         }
 
         public Author Login(string name, string password)
-        {           
-            Author author = this.authorService.GetByName(name);
-
-            if (author.Password == password)
-                return author;
-
-            return null;
+        {
+            return this.authenticationService.Login(name, password);
         }
     }
 }

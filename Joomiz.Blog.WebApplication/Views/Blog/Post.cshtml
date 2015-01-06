@@ -1,4 +1,4 @@
-﻿@model Joomiz.Blog.WebApplication.ViewModels.PostSingleViewModel
+﻿@model Joomiz.Blog.WebApplication.ViewModels.Blog.PostViewModel
 
 @{
     ViewBag.Title = Model.Post.Title;
@@ -12,13 +12,13 @@
 
 @Html.Partial("AddComment", Model.NewComment)
 
-@if (Model.Post.Comments.IsEmpty)
+@if (Model.PostHasNoComments())
 {
     <p>Nenhum comentário cadastrado.</p>
 }
 else
 {
-    foreach (var comment in Model.Post.Comments.Items)
+    foreach (var comment in Model.Post.Comments)
     {
         <div>
             @comment.Body por @comment.Name

@@ -1,4 +1,4 @@
-﻿@model Joomiz.Blog.WebApplication.ViewModels.AddCommentViewModel
+﻿@model Joomiz.Blog.Domain.Entities.Comment
 
 @using (Html.BeginForm("AddComment", "Blog"))
 {
@@ -11,12 +11,14 @@
 
     @Html.LabelFor(model => model.Email);
     @Html.EditorFor(model => model.Email);
+    @Html.ValidationMessageFor(model => model.Email)
 
     @Html.LabelFor(model => model.Url);
     @Html.EditorFor(model => model.Url);
 
     @Html.LabelFor(model => model.Body);
     @Html.EditorFor(model => model.Body);
+    @Html.ValidationMessageFor(model => model.Body)
 
     <input type="submit" value="Enviar" />
 }

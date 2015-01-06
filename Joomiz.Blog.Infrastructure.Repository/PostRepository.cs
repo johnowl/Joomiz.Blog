@@ -14,25 +14,11 @@ namespace Joomiz.Blog.Infrastructure.Repository
     {
         public Post GetById(int id)
         {
-            Post item = null;
+            var procedure = new ProcedureSql("Get_Post_By_Id");
 
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Get_Post_By_Id";
-                command.CommandType = CommandType.StoredProcedure;
+            procedure.AddParameter("@Id", id);
 
-                command.Parameters.AddWithValue("@Id", id);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    item = FillPost(reader);
-                }
-            }
-
-            return item;
+            return procedure.Get<Post>(this.FillPost);            
         }
 
         private Post FillPost(SqlDataReader reader)
@@ -52,105 +38,68 @@ namespace Joomiz.Blog.Infrastructure.Repository
 
         public PagedList<Post> GetAll(int pageNumber = 1, int pageSize = 50)
         {
-            var list = new PagedList<Post>();
+            var procedure = new ProcedureSql("List_Post");            
 
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "List_Post";
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@PageNumber", pageNumber);
-                command.Parameters.AddWithValue("@PageSize", pageSize);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    list.Add(FillPost(reader));
-                }
-
-                // get total records for paging
-                if (reader.NextResult())
-                {
-                    if (reader.Read())
-                    {
-                        list.ItemsTotal = reader.GetInt32(0);
-                        list.PageNumber = pageNumber;
-                        list.PageSize = pageSize;
-                    }
-                }
-            }
-
-            return list;
+            return procedure.GetPagedList<Post>(this.FillPost, pageNumber, pageSize);              
         }
 
         public void Add(Post obj)
         {
-            using (var connection = SqlHelper.GetConnection())
+            var procedure = new ProcedureSql("Add_Post");
+            procedure.AddParameter("@Id", SqlDbType.Int, ParameterDirection.Output);
+            procedure.AddParameter("@AuthorId", obj.Author.Id);
+            procedure.AddParameter("@Title", obj.Title);
+            procedure.AddParameter("@Body", obj.Body);
+            procedure.AddParameter("@IsPublished", obj.IsPublished);
+            procedure.AddParameter("@DateCreated", obj.DateCreated);
+
+            // Sql Server 2008 compatible
+            // http://www.mssqltips.com/sqlservertip/2112/table-value-parameters-in-sql-server-2008-and-net-c/
+            var categories = new DataTable();
+            categories.Columns.Add("Id", typeof(Int32));
+            if (obj.Categories != null)
             {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Add_Post";
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.Add("@Id", SqlDbType.Int).Direction = ParameterDirection.Output;
-
-                command.Parameters.AddWithValue("@AuthorId", obj.Author.Id);
-                command.Parameters.AddWithValue("@Title", obj.Title);
-                command.Parameters.AddWithValue("@Body", obj.Body);
-                command.Parameters.AddWithValue("@IsPublished", obj.IsPublished);
-                command.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
-
-                // Sql Server 2008 compatible
-                // http://www.mssqltips.com/sqlservertip/2112/table-value-parameters-in-sql-server-2008-and-net-c/
-                var categories = new DataTable();
-                categories.Columns.Add("Id", typeof(Int32));
-                if (obj.Categories != null)
+                foreach (Category category in obj.Categories)
                 {
-                    foreach (Category category in obj.Categories)
-                    {
-                        categories.Rows.Add(category.Id);
-                    }
+                    categories.Rows.Add(category.Id);
                 }
-                command.Parameters.AddWithValue("@Categories", categories).SqlDbType = SqlDbType.Structured;
-
-                command.ExecuteNonQuery();
-
-                obj.Id = Convert.ToInt32(command.Parameters["Id"].Value);
             }
+            procedure.AddParameter("@Categories", categories, SqlDbType.Structured);
+
+            obj.Id = procedure.Insert();            
         }
 
         public void Update(Post obj)
         {
-            using (var connection = SqlHelper.GetConnection())
+            var procedure = new ProcedureSql("Update_Post");
+
+            procedure.AddParameter("@Id", obj.Id);
+            procedure.AddParameter("@AuthorId", obj.Author.Id);
+            procedure.AddParameter("@Title", obj.Title);
+            procedure.AddParameter("@Body", obj.Body);
+            procedure.AddParameter("@IsPublished", obj.IsPublished);
+
+            // Sql Server 2008 compatible
+            // http://www.mssqltips.com/sqlservertip/2112/table-value-parameters-in-sql-server-2008-and-net-c/
+            var categories = new DataTable();
+            categories.Columns.Add("Id", typeof(Int32));
+            if (obj.Categories != null)
             {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Update_Post";
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@Id", obj.Id);
-                command.Parameters.AddWithValue("@AuthorId", obj.Author.Id);
-                command.Parameters.AddWithValue("@Title", obj.Title);
-                command.Parameters.AddWithValue("@Body", obj.Body);
-                command.Parameters.AddWithValue("@IsPublished", obj.IsPublished);
-                command.Parameters.AddWithValue("@DateCreated", obj.DateCreated);
-
-                command.ExecuteNonQuery();
+                foreach (Category category in obj.Categories)
+                {
+                    categories.Rows.Add(category.Id);
+                }
             }
+            procedure.AddParameter("@Categories", categories, SqlDbType.Structured);
+
+            procedure.Execute();            
         }
 
         public void Delete(int id)
         {
-            using (var connection = SqlHelper.GetConnection())
-            {
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Delete_Post";
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@Id", id);
-
-                command.ExecuteNonQuery();
-            }
+            var procedure = new ProcedureSql("Update_Post");
+            procedure.AddParameter("@Id", id);
+            procedure.Execute();            
         }
 
         public IEnumerable<Post> GetAll()
