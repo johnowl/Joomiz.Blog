@@ -13,14 +13,19 @@ namespace Joomiz.Blog.Application.Factories
             return new AuthorAppService();
         }       
 
-        public static ICommentAppService GetCommentService()
+        public static ICommentAppService GetCommentAppService()
         {
             return new CommentAppService();
         }
 
-        public static IPostAppService GetPostService()
+        public static IPostAppService GetPostAppService()
         {
             return new PostAppService();
+        }
+
+        public static IAutenticationAppService GetAutenticationAppService()
+        {
+            return new AutenticationAppService();
         }
     }
 }

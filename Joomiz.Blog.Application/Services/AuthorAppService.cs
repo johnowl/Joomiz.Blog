@@ -35,7 +35,10 @@ namespace Joomiz.Blog.Application.Services
 
         public Author GetById(int id)
         {
-            return authorService.GetById(id);
+            Author author = authorService.GetById(id);
+            author.Password = null;
+
+            return author;
         }
 
         public void ChangePassword(string name, string password, string newPassword)
@@ -45,7 +48,14 @@ namespace Joomiz.Blog.Application.Services
 
         public PagedList<Author> GetAll(int pageNumber = 1, int pageSize = 50)
         {
-            return authorService.GetAll(pageNumber, pageSize);
+            PagedList<Author> list = authorService.GetAll(pageNumber, pageSize);
+
+            foreach (Author author in list)
+            {
+                author.Password = null;
+            }
+
+            return list;
         }
 
         public bool Add(Author obj)

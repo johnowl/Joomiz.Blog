@@ -17,8 +17,8 @@ namespace Joomiz.Blog.WebApplication.Controllers
 
         public BlogController()
         {
-            this.postAppService = AppServiceFactory.GetPostService();
-            this.commentAppService = AppServiceFactory.GetCommentService();
+            this.postAppService = AppServiceFactory.GetPostAppService();
+            this.commentAppService = AppServiceFactory.GetCommentAppService();
         }
 
         public BlogController(IPostAppService postAppService)

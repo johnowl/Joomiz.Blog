@@ -35,6 +35,7 @@
     <Compile Include="Contracts\IAutenticationAppService.cs" />
     <Compile Include="Contracts\IAuthorAppService.cs" />
     <Compile Include="Contracts\ICommentAppService.cs" />
+    <Compile Include="Contracts\ICategoryAppService.cs" />
     <Compile Include="Contracts\IPostAppService.cs" />
     <Compile Include="Factories\RepositoryFactory.cs" />
     <Compile Include="Factories\AppServiceFactory.cs" />

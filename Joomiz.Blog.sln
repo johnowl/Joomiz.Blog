@@ -13,6 +13,14 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Joomiz.Blog.Infrastructure.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joomiz.Blog.WebApplication", "Joomiz.Blog.WebApplication\Joomiz.Blog.WebApplication.csproj", "{83D7193C-21F9-4692-BA83-4477420F1F9A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation", "1. Presentation", "{DF14A357-D027-4242-897F-71D51D6A9186}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{F746F7EE-D0CD-401A-AFD0-8ADA21E7C7A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{61AE263B-FFB8-43FA-B8E3-3E11D2B1BE79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{B10E83A9-CDF0-4C98-BCE1-CD46029F34E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +52,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F9A83FB-EFFA-40C9-9C0D-C05BA8403D69} = {61AE263B-FFB8-43FA-B8E3-3E11D2B1BE79}
+		{E102FBBE-DC67-4D9F-B065-2CAA14787052} = {F746F7EE-D0CD-401A-AFD0-8ADA21E7C7A9}
+		{AD41C757-9649-42B5-B43E-B7E6F4FC79C3} = {B10E83A9-CDF0-4C98-BCE1-CD46029F34E3}
+		{9FC85D3E-D99A-49FC-83F8-AE1B0191B310} = {B10E83A9-CDF0-4C98-BCE1-CD46029F34E3}
+		{83D7193C-21F9-4692-BA83-4477420F1F9A} = {DF14A357-D027-4242-897F-71D51D6A9186}
 	EndGlobalSection
 EndGlobal
