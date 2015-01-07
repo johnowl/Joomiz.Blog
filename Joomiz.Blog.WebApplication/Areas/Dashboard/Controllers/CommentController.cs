@@ -3,6 +3,7 @@ using Joomiz.Blog.Application.Factories;
 using Joomiz.Blog.Domain.Common;
 using Joomiz.Blog.Domain.Entities;
 using Joomiz.Blog.WebApplication.Helpers;
+using System;
 using System.Web.Mvc;
 
 namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
@@ -46,6 +47,9 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
         [HttpPost]
         public ActionResult Save(Comment comment)
         {
+            if (comment == null)
+                throw new InvalidOperationException();
+
             if (comment.Id > 0)
             {
                 if (!this.commentAppService.Update(comment))
@@ -91,6 +95,26 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             this.commentAppService.Delete(id);
 
             ViewBag.Message = "Comment successful deleted.";
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ApproveComment(int id)
+        {
+            this.commentAppService.Approve(id, int.Parse(User.Identity.Name));
+
+            ViewBag.Message = "Comment successful approved.";
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult RejectComment(int id)
+        {
+            this.commentAppService.Reject(id, int.Parse(User.Identity.Name));
+
+            ViewBag.Message = "Comment successful rejected.";
 
             return RedirectToAction("Index");
         }

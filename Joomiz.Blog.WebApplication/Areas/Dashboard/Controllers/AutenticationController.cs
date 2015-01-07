@@ -33,7 +33,7 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
 
             if(author != null)
             {
-                FormsAuthentication.SetAuthCookie(user, false);
+                FormsAuthentication.SetAuthCookie(author.Id.ToString(), false);
                 return RedirectToAction("Index", "PostController");
             }
             else
