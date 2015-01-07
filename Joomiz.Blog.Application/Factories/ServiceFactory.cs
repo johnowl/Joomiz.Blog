@@ -26,10 +26,5 @@ namespace Joomiz.Blog.Application.Factories
         {
             return new PostService(repository, validation);
         }
-
-        public static IAuthenticationService GetAuthenticationService(IAuthorService authorService)
-        {
-            return new AuthenticationService(authorService);
-        }
     }
 }

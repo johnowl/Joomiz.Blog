@@ -31,6 +31,27 @@ namespace Joomiz.Blog.Domain.Services
             return this.authorRepository.GetByName(name);
         }
 
+        public Author GetByNameByPassword(string name, string password)
+        {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException("name");
+
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException("password");
+
+            Author author = this.authorRepository.GetByName(name);
+
+            if (author != null && author.Password == password)
+            {
+                return author;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
         public PagedList<Author> GetAll(int pageNumber = 1, int pageSize = 50)
         {
             return this.authorRepository.GetAll(pageNumber, pageSize);
