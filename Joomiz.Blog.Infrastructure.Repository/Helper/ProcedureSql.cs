@@ -150,7 +150,7 @@ namespace Joomiz.Blog.Infrastructure.Repository.Helper
             using (var connection = SqlHelper.GetConnection())
             {
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "Add_Comment";
+                command.CommandText = this.Name;
                 command.CommandType = CommandType.StoredProcedure;
 
                 foreach (SqlParameter parameter in this.Parameters)
