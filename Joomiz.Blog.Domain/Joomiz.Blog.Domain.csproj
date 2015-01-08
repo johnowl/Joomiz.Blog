@@ -35,6 +35,7 @@
     <Compile Include="Contracts\Repositories\ICommentRepository.cs" />
     <Compile Include="Contracts\Repositories\IPostRepository.cs" />
     <Compile Include="Contracts\Repositories\IRepositoryBase.cs" />
+    <Compile Include="Contracts\Services\IAuthenticationService.cs" />
     <Compile Include="Contracts\Services\ICategoryService.cs" />
     <Compile Include="Contracts\Services\ICommentService.cs" />
     <Compile Include="Contracts\Services\IPostService.cs" />
@@ -44,6 +45,7 @@
     <Compile Include="Contracts\Validation\IAuthorValidation.cs" />
     <Compile Include="Contracts\Validation\ICommentValidation.cs" />
     <Compile Include="Contracts\Validation\IPostValidation.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Validation\CommentValidation.cs" />
     <Compile Include="Validation\AuthorValidation.cs" />
     <Compile Include="Entities\Author.cs" />
