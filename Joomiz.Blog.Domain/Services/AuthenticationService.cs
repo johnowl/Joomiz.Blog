@@ -1,5 +1,5 @@
 ﻿using Joomiz.Blog.Domain.Contracts.Services;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using System;
 
 namespace Joomiz.Blog.Domain.Services

@@ -1,4 +1,4 @@
-﻿using Joomiz.Blog.Domain.Entities;
+﻿using Joomiz.Blog.Domain.Model;
 using Joomiz.Blog.Domain.Common;
 using System;
 

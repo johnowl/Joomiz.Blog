@@ -2,7 +2,7 @@
 using Joomiz.Blog.Application.Factories;
 using Joomiz.Blog.Domain.Contracts.Services;
 using Joomiz.Blog.Domain.Contracts.Validation;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using System;
 
 namespace Joomiz.Blog.Application.Services

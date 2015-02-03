@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Joomiz.Blog.Domain.Entities
+namespace Joomiz.Blog.Domain.Model
 {
     public enum CommentStatus
     {

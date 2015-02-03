@@ -1,5 +1,5 @@
 ﻿using Joomiz.Blog.Domain.Common;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using System.Collections.Generic;
 
 namespace Joomiz.Blog.Application.Contracts

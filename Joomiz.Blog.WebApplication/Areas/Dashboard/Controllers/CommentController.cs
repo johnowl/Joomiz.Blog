@@ -1,7 +1,7 @@
 ﻿using Joomiz.Blog.Application.Contracts;
 using Joomiz.Blog.Application.Factories;
 using Joomiz.Blog.Domain.Common;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using Joomiz.Blog.WebApplication.Helpers;
 using System;
 using System.Web.Mvc;
@@ -22,6 +22,7 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             this.commentAppService = AppServiceFactory.GetCommentAppService();
         }
         
+        [Authorize]
         public ActionResult Index(int pageNumber = 50)
         {
             PagedList<Comment> comments = this.commentAppService.GetAll(pageNumber);
@@ -29,6 +30,7 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             return View(comments);
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Comment comment = this.commentAppService.GetById(id);
@@ -39,11 +41,14 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             return View(comment);
         }
 
+        [Authorize]
         public ActionResult New()
         {
             return View();
         }
 
+        
+        [Authorize]
         [HttpPost]
         public ActionResult Save(Comment comment)
         {
@@ -79,6 +84,7 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             return RedirectToAction("Edit", new { id = comment.Id });
         }
 
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Comment comment = this.commentAppService.GetById(id);
@@ -89,6 +95,7 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             return View(comment);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult DeleteComment(int id)
         {
@@ -99,6 +106,7 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult ApproveComment(int id)
         {
@@ -109,6 +117,7 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult RejectComment(int id)
         {

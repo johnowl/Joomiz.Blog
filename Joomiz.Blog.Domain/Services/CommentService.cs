@@ -1,5 +1,5 @@
 ﻿using System;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using Joomiz.Blog.Domain.Contracts.Services;
 using Joomiz.Blog.Domain.Contracts.Repositories;
 using Joomiz.Blog.Domain.Common;

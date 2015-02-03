@@ -1,5 +1,5 @@
 ﻿using Joomiz.Blog.Domain.Contracts.Validation;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using System;
 using System.Collections.Generic;
 

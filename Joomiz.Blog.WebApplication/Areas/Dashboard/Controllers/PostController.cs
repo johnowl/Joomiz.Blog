@@ -1,17 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Joomiz.Blog.Domain.Model;
 using System.Web.Mvc;
 
 namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
 {
     public class PostController : Controller
     {
-        // GET: Dashboard/Post
         public ActionResult Index()
         {
             return View();
         }
+
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Save(Post post)
+        {
+            return View();
+        }
+
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+     
     }
 }

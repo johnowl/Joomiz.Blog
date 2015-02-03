@@ -1,6 +1,6 @@
 ﻿using Joomiz.Blog.Application.Contracts;
 using Joomiz.Blog.Application.Factories;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using System.Web.Mvc;
 using System.Web.Security;
 

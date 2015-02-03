@@ -1,6 +1,6 @@
 ﻿using Joomiz.Blog.Domain.Common;
 using Joomiz.Blog.Domain.Contracts.Repositories;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using Joomiz.Blog.Infrastructure.Repository.Helper;
 using System;
 using System.Collections.Generic;

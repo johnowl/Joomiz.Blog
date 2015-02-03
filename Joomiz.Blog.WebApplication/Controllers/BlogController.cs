@@ -1,6 +1,6 @@
 ﻿using Joomiz.Blog.Application.Contracts;
 using Joomiz.Blog.Application.Factories;
-using Joomiz.Blog.Domain.Entities;
+using Joomiz.Blog.Domain.Model;
 using Joomiz.Blog.WebApplication.ActionFilters;
 using Joomiz.Blog.WebApplication.Helpers;
 using Joomiz.Blog.WebApplication.ViewModels;
@@ -21,9 +21,10 @@ namespace Joomiz.Blog.WebApplication.Controllers
             this.commentAppService = AppServiceFactory.GetCommentAppService();
         }
 
-        public BlogController(IPostAppService postAppService)
+        public BlogController(IPostAppService postAppService, ICommentAppService commentAppService)
         {
             this.postAppService = postAppService;
+            this.commentAppService = commentAppService;
         }
 
         public ActionResult Index(int pageNumber = 1)

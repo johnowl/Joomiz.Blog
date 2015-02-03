@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Joomiz.Blog.Domain.Entities
+namespace Joomiz.Blog.Domain.Model
 {
     public class Post : IEntity
     {
