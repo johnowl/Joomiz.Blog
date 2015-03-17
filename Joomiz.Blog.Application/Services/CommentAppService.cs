@@ -12,7 +12,7 @@ namespace Joomiz.Blog.Application.Services
     public class CommentAppService : ICommentAppService
     {
         private readonly ICommentService commentService;
-        private readonly ICommentValidation commentValidation;
+        private readonly IValidation<Comment> commentValidation;
 
         public CommentAppService()
         {
@@ -25,7 +25,7 @@ namespace Joomiz.Blog.Application.Services
             this.commentService = commentService;
         }
 
-        public Dictionary<string, string> GetValidationErrors()
+        public IEnumerable<IValidationError> GetValidationErrors()
         {
             return this.commentValidation.GetErrors();
         }   

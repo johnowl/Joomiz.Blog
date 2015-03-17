@@ -1,19 +1,8 @@
-﻿using Joomiz.Blog.Domain.Contracts.Validation;
-using Joomiz.Blog.Domain.Model;
-using System;
-using System.Collections.Generic;
+﻿using Joomiz.Blog.Domain.Model;
+
 namespace Joomiz.Blog.Domain.Validation
 {
-    public class CategoryValidation : ICategoryValidation
+    public class CategoryValidation : Validation<Category>
     {
-        public bool Validate(Category obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Dictionary<string, string> GetErrors()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

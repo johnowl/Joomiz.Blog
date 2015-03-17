@@ -1,20 +1,12 @@
-﻿using Joomiz.Blog.Domain.Contracts.Validation;
-using Joomiz.Blog.Domain.Model;
-using System;
-using System.Collections.Generic;
+﻿using Joomiz.Blog.Domain.Model;
 
 namespace Joomiz.Blog.Domain.Validation
 {
-    public class PostValidation : IPostValidation
+    public class PostValidation : Validation<Post>
     {
-        public bool Validate(Post obj)
+        public PostValidation()
         {
-            throw new NotImplementedException();
-        }
 
-        public Dictionary<string, string> GetErrors()
-        {
-            throw new NotImplementedException();
         }
     }
 }

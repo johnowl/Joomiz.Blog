@@ -10,9 +10,9 @@ namespace Joomiz.Blog.Domain.Services
     public class CommentService : ICommentService
     {
         private readonly ICommentRepository commentRepository;
-        private readonly ICommentValidation commentValidation;
+        private readonly IValidation<Comment> commentValidation;
 
-        public CommentService(ICommentRepository commentRepository, ICommentValidation validation)
+        public CommentService(ICommentRepository commentRepository, IValidation<Comment> validation)
         {
             this.commentRepository = commentRepository;
             this.commentValidation = validation;

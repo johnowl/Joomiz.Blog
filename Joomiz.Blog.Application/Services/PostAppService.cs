@@ -17,9 +17,9 @@ namespace Joomiz.Blog.Application.Services
         private readonly IPostService postService;
         private readonly ICommentService commentService;
         private readonly ICategoryService categoryService;
-        private readonly IPostValidation postValidation;
+        private readonly IValidation<Post> postValidation;
 
-        public PostAppService(IPostService postService, ICommentService commentService, ICategoryService categoryService, IPostValidation postValidation)
+        public PostAppService(IPostService postService, ICommentService commentService, ICategoryService categoryService, IValidation<Post> postValidation)
         {
             this.postService = postService;
             this.commentService = commentService;
@@ -35,7 +35,7 @@ namespace Joomiz.Blog.Application.Services
             this.categoryService = ServiceFactory.GetCategoryService(RepositoryFactory.GetCategoryRepository(), null);
         }
 
-        public Dictionary<string, string> GetValidationErrors()
+        public IEnumerable<IValidationError> GetValidationErrors()
         {
             return this.postValidation.GetErrors();
         }  

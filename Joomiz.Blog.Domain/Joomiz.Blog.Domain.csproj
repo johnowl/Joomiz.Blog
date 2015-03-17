@@ -41,13 +41,16 @@
     <Compile Include="Contracts\Services\IPostService.cs" />
     <Compile Include="Contracts\Services\IAuthorService.cs" />
     <Compile Include="Contracts\Services\IServiceBase.cs" />
-    <Compile Include="Contracts\Validation\ICategoryValidation.cs" />
-    <Compile Include="Contracts\Validation\IAuthorValidation.cs" />
-    <Compile Include="Contracts\Validation\ICommentValidation.cs" />
-    <Compile Include="Contracts\Validation\IPostValidation.cs" />
+    <Compile Include="Contracts\Specification\ISpecification.cs" />
+    <Compile Include="Contracts\Validation\IError.cs" />
+    <Compile Include="Contracts\Validation\IValidationRule.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorEmailAddressIsValid.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorEmailAddressIsRequired.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorNameIsRequired.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorNameLengthMustBeLessThan70.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorPasswordIsRequired.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorPasswordIsValid.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Validation\CommentValidation.cs" />
-    <Compile Include="Validation\AuthorValidation.cs" />
     <Compile Include="Model\Author.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Comment.cs" />
@@ -61,13 +64,33 @@
     <Compile Include="Services\AuthorService.cs" />
     <Compile Include="Common\PagedList.cs" />
     <Compile Include="Contracts\Validation\IValidation.cs" />
+    <Compile Include="Validation\AuthorValidation.cs" />
     <Compile Include="Validation\CategoryValidation.cs" />
+    <Compile Include="Validation\CommentValidation.cs" />
+    <Compile Include="Validation\ErrorMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessage.resx</DependentUpon>
+    </Compile>
     <Compile Include="Validation\PostValidation.cs" />
+    <Compile Include="Validation\Validation.cs" />
+    <Compile Include="Validation\ValidationError.cs" />
+    <Compile Include="Validation\ValidationRule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Specifications\CategorySpecs\" />
+    <Folder Include="Model\Specifications\CommentSpecs\" />
+    <Folder Include="Model\Specifications\PostSpecs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Validation\ErrorMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

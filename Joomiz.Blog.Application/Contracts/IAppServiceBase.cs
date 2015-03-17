@@ -1,4 +1,5 @@
 ﻿using Joomiz.Blog.Domain.Common;
+using Joomiz.Blog.Domain.Contracts.Validation;
 using Joomiz.Blog.Domain.Model;
 using System.Collections.Generic;
 
@@ -11,6 +12,6 @@ namespace Joomiz.Blog.Application.Contracts
         bool Add(T obj);
         bool Update(T obj);
         void Delete(int id);
-        Dictionary<string, string> GetValidationErrors();
+        IEnumerable<IValidationError> GetValidationErrors();
     }
 }

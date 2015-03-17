@@ -13,9 +13,9 @@ namespace Joomiz.Blog.Application.Services
     public class AuthorAppService : IAuthorAppService
     {
         private readonly IAuthorService authorService;
-        private readonly IAuthorValidation authorValidation;
+        private readonly IValidation<Author> authorValidation;
 
-        public AuthorAppService(IAuthorService authorService, IAuthorValidation authorValidation)
+        public AuthorAppService(IAuthorService authorService, IValidation<Author> authorValidation)
         {
             this.authorService = authorService;
             this.authorValidation = authorValidation;
@@ -28,7 +28,7 @@ namespace Joomiz.Blog.Application.Services
             this.authorService = ServiceFactory.GetAuthorService(authorRepository, this.authorValidation);
         }
 
-        public Dictionary<string, string> GetValidationErrors()
+        public IEnumerable<IValidationError> GetValidationErrors()
         {
             return this.authorValidation.GetErrors();
         }        

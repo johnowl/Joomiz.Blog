@@ -11,9 +11,9 @@ namespace Joomiz.Blog.Domain.Services
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository categoryRepository;
-        private readonly ICategoryValidation categoryValidation;
+        private readonly IValidation<Category> categoryValidation;
 
-        public CategoryService(ICategoryRepository categoryRepository, ICategoryValidation categoryValidation)
+        public CategoryService(ICategoryRepository categoryRepository, IValidation<Category> categoryValidation)
         {
             this.categoryRepository = categoryRepository;
             this.categoryValidation = categoryValidation;
