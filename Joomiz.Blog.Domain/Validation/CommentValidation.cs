@@ -3,7 +3,7 @@ using Joomiz.Blog.Domain.Model;
 
 namespace Joomiz.Blog.Domain.Validation
 {
-    public class CommentValidation : Validation<Comment>
+    public class CommentValidation : Validation<Comment>, ICommentValidation
     {
         public CommentValidation()
         {

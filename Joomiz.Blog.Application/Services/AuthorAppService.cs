@@ -13,9 +13,9 @@ namespace Joomiz.Blog.Application.Services
     public class AuthorAppService : IAuthorAppService
     {
         private readonly IAuthorService authorService;
-        private readonly IValidation<Author> authorValidation;
+        private readonly IAuthorValidation authorValidation;
 
-        public AuthorAppService(IAuthorService authorService, IValidation<Author> authorValidation)
+        public AuthorAppService(IAuthorService authorService, IAuthorValidation authorValidation)
         {
             this.authorService = authorService;
             this.authorValidation = authorValidation;

@@ -8,22 +8,22 @@ namespace Joomiz.Blog.Application.Factories
 {
     public static class ServiceFactory
     {
-        public static IAuthorService GetAuthorService(IAuthorRepository repository, IValidation<Author> validation)
+        public static IAuthorService GetAuthorService(IAuthorRepository repository, IAuthorValidation validation)
         {            
             return new AuthorService(repository, validation);
         }
 
-        public static ICategoryService GetCategoryService(ICategoryRepository repository, IValidation<Category> validation)
+        public static ICategoryService GetCategoryService(ICategoryRepository repository, ICategoryValidation validation)
         {            
             return new CategoryService(repository, validation);
         }
 
-        public static ICommentService GetCommentService(ICommentRepository repository, IValidation<Comment> validation)
+        public static ICommentService GetCommentService(ICommentRepository repository, ICommentValidation validation)
         {            
             return new CommentService(repository, validation);
         }
 
-        public static IPostService GetPostService(IPostRepository repository, IValidation<Post> validation)
+        public static IPostService GetPostService(IPostRepository repository, IPostValidation validation)
         {
             return new PostService(repository, validation);
         }

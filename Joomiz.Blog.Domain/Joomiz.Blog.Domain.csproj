@@ -42,7 +42,11 @@
     <Compile Include="Contracts\Services\IAuthorService.cs" />
     <Compile Include="Contracts\Services\IServiceBase.cs" />
     <Compile Include="Contracts\Specification\ISpecification.cs" />
+    <Compile Include="Contracts\Validation\IAuthorValidation.cs" />
+    <Compile Include="Contracts\Validation\ICategoryValidation.cs" />
+    <Compile Include="Contracts\Validation\ICommentValidation.cs" />
     <Compile Include="Contracts\Validation\IError.cs" />
+    <Compile Include="Contracts\Validation\IPostValidation.cs" />
     <Compile Include="Contracts\Validation\IValidationRule.cs" />
     <Compile Include="Model\Specifications\AuthorSpecs\AuthorEmailAddressIsValid.cs" />
     <Compile Include="Model\Specifications\AuthorSpecs\AuthorEmailAddressIsRequired.cs" />

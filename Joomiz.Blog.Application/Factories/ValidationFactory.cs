@@ -7,22 +7,22 @@ namespace Joomiz.Blog.Application.Factories
 {
     public static class ValidationFactory
     {
-        public static IValidation<Author> GetAuthorValidation(IAuthorRepository authorRepository)
+        public static IAuthorValidation GetAuthorValidation(IAuthorRepository authorRepository)
         {
             return new AuthorValidation(authorRepository);
         }
 
-        public static IValidation<Category> GetCategoryValidation()
+        public static ICategoryValidation GetCategoryValidation()
         {
             return new CategoryValidation();
         }
 
-        public static IValidation<Comment> GetCommentValidation()
+        public static ICommentValidation GetCommentValidation()
         {
             return new CommentValidation();
         }
 
-        public static IValidation<Post> GetPostValidation()
+        public static IPostValidation GetPostValidation()
         {
             return new PostValidation();
         }

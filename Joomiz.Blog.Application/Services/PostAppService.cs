@@ -17,9 +17,9 @@ namespace Joomiz.Blog.Application.Services
         private readonly IPostService postService;
         private readonly ICommentService commentService;
         private readonly ICategoryService categoryService;
-        private readonly IValidation<Post> postValidation;
+        private readonly IPostValidation postValidation;
 
-        public PostAppService(IPostService postService, ICommentService commentService, ICategoryService categoryService, IValidation<Post> postValidation)
+        public PostAppService(IPostService postService, ICommentService commentService, ICategoryService categoryService, IPostValidation postValidation)
         {
             this.postService = postService;
             this.commentService = commentService;

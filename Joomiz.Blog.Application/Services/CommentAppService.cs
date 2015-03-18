@@ -12,7 +12,7 @@ namespace Joomiz.Blog.Application.Services
     public class CommentAppService : ICommentAppService
     {
         private readonly ICommentService commentService;
-        private readonly IValidation<Comment> commentValidation;
+        private readonly ICommentValidation commentValidation;
 
         public CommentAppService()
         {
