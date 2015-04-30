@@ -93,6 +93,9 @@
     <Compile Include="Validation\Rules\AuthorRules\AuthorNameMaximumLengthIs70Rule.cs" />
     <Compile Include="Validation\Rules\AuthorRules\AuthorPasswordIsRequiredRule.cs" />
     <Compile Include="Validation\Rules\AuthorRules\AuthorPasswordIsValidRule.cs" />
+    <Compile Include="Validation\Rules\CategoryRules\CategoryNameIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\CategoryRules\CategoryNameMaximumLengthIs70Rule.cs" />
+    <Compile Include="Validation\Rules\CategoryRules\CategoryNameMustBeUniqueRule.cs" />
     <Compile Include="Validation\Validation.cs" />
     <Compile Include="Validation\ValidationError.cs" />
     <Compile Include="Validation\ValidationRule.cs" />
@@ -100,7 +103,10 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Validation\Rules\CommentRules\" />
+    <Folder Include="Validation\Rules\PostRules\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Validation\ErrorMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>
