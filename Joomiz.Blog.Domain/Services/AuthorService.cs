@@ -10,9 +10,9 @@ namespace Joomiz.Blog.Domain.Services
     public class AuthorService : IAuthorService
     {
         private readonly IAuthorRepository authorRepository;
-        private readonly IValidation<Author> authorValidation;
+        private readonly IAuthorValidation authorValidation;
 
-        public AuthorService(IAuthorRepository authorRepository, IValidation<Author> authorValidation)
+        public AuthorService(IAuthorRepository authorRepository, IAuthorValidation authorValidation)
         {
             this.authorRepository = authorRepository;
             this.authorValidation = authorValidation;

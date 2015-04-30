@@ -2,7 +2,7 @@
 
 namespace Joomiz.Blog.Domain.Contracts.Specification
 {
-    public interface ISpecification<T> : IEntity
+    public interface ISpecification<T> where T : IEntity
     {
         bool IsSatisfiedBy(T obj);
     }

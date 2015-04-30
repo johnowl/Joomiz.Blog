@@ -3,11 +3,12 @@ using System;
 
 namespace Joomiz.Blog.Domain.Model.Specifications.AuthorSpecs
 {
-    public class AuthorPasswordIsValid : ISpecification<Author>
+    class AuthorEmailAddressIsRequiredSpec : ISpecification<Author>
     {
         public bool IsSatisfiedBy(Author obj)
         {
-            return obj.Password.Length >= 8 && obj.Password.Length < 13;
+            return string.IsNullOrEmpty(obj.Email) == false;
         }
+        
     }
 }

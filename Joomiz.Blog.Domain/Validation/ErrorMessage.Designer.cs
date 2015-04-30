@@ -88,11 +88,11 @@ namespace Joomiz.Blog.Domain.Validation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name length must be less then 70 characters..
+        ///   Looks up a localized string similar to Name length must be less then 71 characters..
         /// </summary>
-        internal static string AuthorNameLengthMustBeLessThen70 {
+        internal static string AuthorNameLengthMustBeLessThen71 {
             get {
-                return ResourceManager.GetString("AuthorNameLengthMustBeLessThen70", resourceCulture);
+                return ResourceManager.GetString("AuthorNameLengthMustBeLessThen71", resourceCulture);
             }
         }
         
@@ -111,6 +111,60 @@ namespace Joomiz.Blog.Domain.Validation {
         internal static string AuthorPasswordIsRequired {
             get {
                 return ResourceManager.GetString("AuthorPasswordIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required..
+        /// </summary>
+        internal static string CategoryNameIsRequired {
+            get {
+                return ResourceManager.GetString("CategoryNameIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name length must be less then 71 characters..
+        /// </summary>
+        internal static string CategoryNameLengthMustBeLessThen71 {
+            get {
+                return ResourceManager.GetString("CategoryNameLengthMustBeLessThen71", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment body is required..
+        /// </summary>
+        internal static string CommentBodyIsRequired {
+            get {
+                return ResourceManager.GetString("CommentBodyIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required..
+        /// </summary>
+        internal static string CommentNameIsRequired {
+            get {
+                return ResourceManager.GetString("CommentNameIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment PostId is required..
+        /// </summary>
+        internal static string CommentPostIdIsRequired {
+            get {
+                return ResourceManager.GetString("CommentPostIdIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error message not set..
+        /// </summary>
+        internal static string NotSet {
+            get {
+                return ResourceManager.GetString("NotSet", resourceCulture);
             }
         }
     }

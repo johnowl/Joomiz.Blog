@@ -24,7 +24,7 @@ namespace Joomiz.Blog.Application.Services
         public AuthorAppService()
         {
             var authorRepository = RepositoryFactory.GetAuthorRepository();
-            this.authorValidation = ValidationFactory.GetAuthorValidation(authorRepository);
+            this.authorValidation = ValidationFactory.GetAuthorValidation();
             this.authorService = ServiceFactory.GetAuthorService(authorRepository, this.authorValidation);
         }
 

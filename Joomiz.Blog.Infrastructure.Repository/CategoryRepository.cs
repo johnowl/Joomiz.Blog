@@ -74,5 +74,11 @@ namespace Joomiz.Blog.Infrastructure.Repository
             procedure.AddParameter("@PostId", postId);
             return procedure.GetList<Category>(FillCategory);            
         }
+
+
+        public Category GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

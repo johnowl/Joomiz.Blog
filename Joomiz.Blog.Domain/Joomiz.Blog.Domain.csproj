@@ -48,12 +48,22 @@
     <Compile Include="Contracts\Validation\IError.cs" />
     <Compile Include="Contracts\Validation\IPostValidation.cs" />
     <Compile Include="Contracts\Validation\IValidationRule.cs" />
-    <Compile Include="Model\Specifications\AuthorSpecs\AuthorEmailAddressIsValid.cs" />
-    <Compile Include="Model\Specifications\AuthorSpecs\AuthorEmailAddressIsRequired.cs" />
-    <Compile Include="Model\Specifications\AuthorSpecs\AuthorNameIsRequired.cs" />
-    <Compile Include="Model\Specifications\AuthorSpecs\AuthorNameLengthMustBeLessThan70.cs" />
-    <Compile Include="Model\Specifications\AuthorSpecs\AuthorPasswordIsRequired.cs" />
-    <Compile Include="Model\Specifications\AuthorSpecs\AuthorPasswordIsValid.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorEmailAddressIsValidSpec.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorEmailAddressIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorNameIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorNameMaximumLengthIs70Spec.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorPasswordIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\AuthorSpecs\AuthorPasswordIsValidSpec.cs" />
+    <Compile Include="Model\Specifications\CategorySpecs\CategoryNameIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\CategorySpecs\CategoryNameMaximumLengthIs70Spec.cs" />
+    <Compile Include="Model\Specifications\CategorySpecs\CategoryNameMustBeUniqueSpec.cs" />
+    <Compile Include="Model\Specifications\CommentSpecs\CommentBodyIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\CommentSpecs\CommentNameIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\CommentSpecs\CommentPostIdIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\PostSpecs\PostAuthorIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\PostSpecs\PostBodyIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\PostSpecs\PostTitleIsRequiredSpec.cs" />
+    <Compile Include="Model\Specifications\PostSpecs\PostTitleMaximumLengthIs70Spec.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Model\Author.cs" />
     <Compile Include="Model\Category.cs" />
@@ -77,6 +87,12 @@
       <DependentUpon>ErrorMessage.resx</DependentUpon>
     </Compile>
     <Compile Include="Validation\PostValidation.cs" />
+    <Compile Include="Validation\Rules\AuthorRules\AuthorEmailAddressIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\AuthorRules\AuthorEmailAddressIsValidRule.cs" />
+    <Compile Include="Validation\Rules\AuthorRules\AuthorNameIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\AuthorRules\AuthorNameMaximumLengthIs70Rule.cs" />
+    <Compile Include="Validation\Rules\AuthorRules\AuthorPasswordIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\AuthorRules\AuthorPasswordIsValidRule.cs" />
     <Compile Include="Validation\Validation.cs" />
     <Compile Include="Validation\ValidationError.cs" />
     <Compile Include="Validation\ValidationRule.cs" />
@@ -84,11 +100,7 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Specifications\CategorySpecs\" />
-    <Folder Include="Model\Specifications\CommentSpecs\" />
-    <Folder Include="Model\Specifications\PostSpecs\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Validation\ErrorMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>

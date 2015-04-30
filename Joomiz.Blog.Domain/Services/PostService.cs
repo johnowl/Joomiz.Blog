@@ -10,9 +10,9 @@ namespace Joomiz.Blog.Domain.Services
     public class PostService : IPostService
     {
         private readonly IPostRepository postRepository;
-        private readonly IValidation<Post> postValidation;
+        private readonly IPostValidation postValidation;
 
-        public PostService(IPostRepository postRepository, IValidation<Post> postValidation)
+        public PostService(IPostRepository postRepository, IPostValidation postValidation)
         {
             this.postRepository = postRepository;
             this.postValidation = postValidation;

@@ -7,5 +7,6 @@ namespace Joomiz.Blog.Domain.Contracts.Repositories
     public interface ICategoryRepository : IRepositoryBase<Category>
     {
         IEnumerable<Category> GetByPostId(int postId);
+        Category GetByName(string name);
     }
 }
