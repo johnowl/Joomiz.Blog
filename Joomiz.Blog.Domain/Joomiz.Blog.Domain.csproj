@@ -96,6 +96,9 @@
     <Compile Include="Validation\Rules\CategoryRules\CategoryNameIsRequiredRule.cs" />
     <Compile Include="Validation\Rules\CategoryRules\CategoryNameMaximumLengthIs70Rule.cs" />
     <Compile Include="Validation\Rules\CategoryRules\CategoryNameMustBeUniqueRule.cs" />
+    <Compile Include="Validation\Rules\CommentRules\CommentBodyIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\CommentRules\CommentNameIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\CommentRules\CommentPostIdIsRequiredRule.cs" />
     <Compile Include="Validation\Validation.cs" />
     <Compile Include="Validation\ValidationError.cs" />
     <Compile Include="Validation\ValidationRule.cs" />
@@ -104,7 +107,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Validation\Rules\CommentRules\" />
     <Folder Include="Validation\Rules\PostRules\" />
   </ItemGroup>
   <ItemGroup>
