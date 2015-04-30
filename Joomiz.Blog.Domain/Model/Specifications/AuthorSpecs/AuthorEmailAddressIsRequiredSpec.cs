@@ -3,7 +3,7 @@ using System;
 
 namespace Joomiz.Blog.Domain.Model.Specifications.AuthorSpecs
 {
-    class AuthorEmailAddressIsRequiredSpec : ISpecification<Author>
+    public class AuthorEmailAddressIsRequiredSpec : ISpecification<Author>
     {
         public bool IsSatisfiedBy(Author obj)
         {

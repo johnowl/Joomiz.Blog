@@ -6,7 +6,7 @@ namespace Joomiz.Blog.Domain.Model.Specifications.CategorySpecs
 {
     public class CategoryNameMustBeUniqueSpec : ISpecification<Category>
     {
-        private ICategoryRepository Repository { get; set; }
+        private readonly ICategoryRepository Repository { get; set; }
 
         public CategoryNameMustBeUniqueSpec(ICategoryRepository repository)
         {
