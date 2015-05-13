@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>741826b1-70aa-481b-872e-e555e4df2129</ProjectGuid>
+    <ProjectGuid>{D1A80613-D82C-4BED-A396-D713E02F7F05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Joomiz.Blog.Domain.Test</RootNamespace>
