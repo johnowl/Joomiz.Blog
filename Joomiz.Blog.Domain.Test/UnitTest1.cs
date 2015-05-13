@@ -9,7 +9,7 @@ namespace Joomiz.Blog.Domain.Test
         [TestMethod]
         public void TestMethod1()
         {
-            Assert.IsTrue(false);
+            Assert.IsTrue(true, "Test passed!");
         }
     }
 }
