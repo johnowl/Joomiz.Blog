@@ -1,6 +1,6 @@
 #Joomiz.Blog
 
-[![Build status](https://ci.appveyor.com/api/projects/status/mmx3ro53hhlvxiuq?svg=true)](https://ci.appveyor.com/project/johnowl/joomiz-blog)
+![Build status](https://ci.appveyor.com/api/projects/status/mmx3ro53hhlvxiuq?svg=true)
 
 
 Simple C# blog system using Domain Driven Design.
