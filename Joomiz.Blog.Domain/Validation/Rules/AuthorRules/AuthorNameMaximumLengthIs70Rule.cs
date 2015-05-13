@@ -8,7 +8,7 @@ namespace Joomiz.Blog.Domain.Validation.Rules.AuthorRules
         public AuthorNameMaximumLengthIs70Rule()
         {
             this.Specification = new AuthorNameMaximumLengthIs70Spec();
-            this.Error = new ValidationError("Name", ErrorMessage.AuthorNameLengthMustBeLessThen71);
+            this.Error = new ValidationError("Name", ErrorMessage.AuthorNameMaximumLengthIs70);
         }
     }
 }

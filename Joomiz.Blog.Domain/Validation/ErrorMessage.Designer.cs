@@ -90,9 +90,9 @@ namespace Joomiz.Blog.Domain.Validation {
         /// <summary>
         ///   Looks up a localized string similar to Name length must be less then 71 characters..
         /// </summary>
-        internal static string AuthorNameLengthMustBeLessThen71 {
+        internal static string AuthorNameMaximumLengthIs70 {
             get {
-                return ResourceManager.GetString("AuthorNameLengthMustBeLessThen71", resourceCulture);
+                return ResourceManager.GetString("AuthorNameMaximumLengthIs70", resourceCulture);
             }
         }
         
@@ -126,9 +126,9 @@ namespace Joomiz.Blog.Domain.Validation {
         /// <summary>
         ///   Looks up a localized string similar to Name length must be less then 71 characters..
         /// </summary>
-        internal static string CategoryNameLengthMustBeLessThen71 {
+        internal static string CategoryNameMaximumLengthIs70 {
             get {
-                return ResourceManager.GetString("CategoryNameLengthMustBeLessThen71", resourceCulture);
+                return ResourceManager.GetString("CategoryNameMaximumLengthIs70", resourceCulture);
             }
         }
         
@@ -165,6 +165,42 @@ namespace Joomiz.Blog.Domain.Validation {
         internal static string NotSet {
             get {
                 return ResourceManager.GetString("NotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post author is required..
+        /// </summary>
+        internal static string PostAuthorIsRequired {
+            get {
+                return ResourceManager.GetString("PostAuthorIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post body is required..
+        /// </summary>
+        internal static string PostBodyIsRequired {
+            get {
+                return ResourceManager.GetString("PostBodyIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post title is required..
+        /// </summary>
+        internal static string PostTitleIsRequired {
+            get {
+                return ResourceManager.GetString("PostTitleIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post title maximum length is 70 chacacters..
+        /// </summary>
+        internal static string PostTitleMaximumLengthIs70 {
+            get {
+                return ResourceManager.GetString("PostTitleMaximumLengthIs70", resourceCulture);
             }
         }
     }

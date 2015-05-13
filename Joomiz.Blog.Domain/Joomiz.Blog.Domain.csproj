@@ -99,6 +99,10 @@
     <Compile Include="Validation\Rules\CommentRules\CommentBodyIsRequiredRule.cs" />
     <Compile Include="Validation\Rules\CommentRules\CommentNameIsRequiredRule.cs" />
     <Compile Include="Validation\Rules\CommentRules\CommentPostIdIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\PostRules\PostAuthorIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\PostRules\PostBodyIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\PostRules\PostTitleIsRequiredRule.cs" />
+    <Compile Include="Validation\Rules\PostRules\PostTitleMaximumLengthIs70Rule.cs" />
     <Compile Include="Validation\Validation.cs" />
     <Compile Include="Validation\ValidationError.cs" />
     <Compile Include="Validation\ValidationRule.cs" />
@@ -106,9 +110,7 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Validation\Rules\PostRules\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Validation\ErrorMessage.resx">
       <Generator>ResXFileCodeGenerator</Generator>

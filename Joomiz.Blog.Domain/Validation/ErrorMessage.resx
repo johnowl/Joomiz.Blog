@@ -126,7 +126,7 @@
   <data name="AuthorNameIsRequired" xml:space="preserve">
     <value>Name is required.</value>
   </data>
-  <data name="AuthorNameLengthMustBeLessThen71" xml:space="preserve">
+  <data name="AuthorNameMaximumLengthIs70" xml:space="preserve">
     <value>Name length must be less then 71 characters.</value>
   </data>
   <data name="AuthorPasswordIsInvalid" xml:space="preserve">
@@ -138,7 +138,7 @@
   <data name="CategoryNameIsRequired" xml:space="preserve">
     <value>Name is required.</value>
   </data>
-  <data name="CategoryNameLengthMustBeLessThen71" xml:space="preserve">
+  <data name="CategoryNameMaximumLengthIs70" xml:space="preserve">
     <value>Name length must be less then 71 characters.</value>
   </data>
   <data name="CommentBodyIsRequired" xml:space="preserve">
@@ -152,5 +152,17 @@
   </data>
   <data name="NotSet" xml:space="preserve">
     <value>Error message not set.</value>
+  </data>
+  <data name="PostAuthorIsRequired" xml:space="preserve">
+    <value>Post author is required.</value>
+  </data>
+  <data name="PostBodyIsRequired" xml:space="preserve">
+    <value>Post body is required.</value>
+  </data>
+  <data name="PostTitleIsRequired" xml:space="preserve">
+    <value>Post title is required.</value>
+  </data>
+  <data name="PostTitleMaximumLengthIs70" xml:space="preserve">
+    <value>Post title maximum length is 70 chacacters.</value>
   </data>
 </root>
