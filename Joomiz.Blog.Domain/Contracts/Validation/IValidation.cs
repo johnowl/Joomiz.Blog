@@ -10,6 +10,6 @@ namespace Joomiz.Blog.Domain.Contracts.Validation
         void AddRule(IValidationRule<T> rule);
         void AddRule(ISpecification<T> specification, IValidationError error);
         bool Validate(T obj);
-        IEnumerable<IValidationError> GetErrors();
+        IList<IValidationError> GetErrors();
     }
 }

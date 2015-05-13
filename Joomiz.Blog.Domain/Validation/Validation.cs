@@ -40,7 +40,7 @@ namespace Joomiz.Blog.Domain.Validation
             return this.ErrorList.Count == 0;
         }
 
-        public IEnumerable<IValidationError> GetErrors()
+        public IList<IValidationError> GetErrors()
         {
             return this.ErrorList;
         }
