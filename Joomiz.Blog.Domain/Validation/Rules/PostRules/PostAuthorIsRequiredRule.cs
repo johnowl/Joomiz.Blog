@@ -8,7 +8,7 @@ namespace Joomiz.Blog.Domain.Validation.Rules.PostRules
         public PostAuthorIsRequiredRule()
         {
             this.Specification = new PostAuthorIsRequiredSpec();
-            this.Error = new ValidationError("Author", ErrorMessage.PostAuthorIsRequired);
+            this.Error = new ValidationError("Author.Id", ErrorMessage.PostAuthorIsRequired);
         }
     }
 }

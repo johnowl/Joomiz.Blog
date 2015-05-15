@@ -17,7 +17,7 @@ namespace Joomiz.Blog.Domain.Validation
 
         public void AddError(IValidationError error)
         {
-            this.AddError(error);
+            this.Errors.Add(error);
         }
     }
 }
