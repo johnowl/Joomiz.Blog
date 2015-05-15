@@ -13,7 +13,7 @@ namespace Joomiz.Blog.Domain.Test
     public class PostTests
     {
         [TestMethod]
-        public void Shoud_Not_Add_Post_Without_An_Author()
+        public void Shoud_Not_Add_Post_Without_Author()
         {
             var post = new Post();
             post.Title = "Post Title";
@@ -24,20 +24,26 @@ namespace Joomiz.Blog.Domain.Test
             var postRepository = new FakePostRepository();
             var postService = new PostService(postRepository, postValidation);
 
-            bool result = postService.Add(post);            
-            var errors = postValidation.GetErrors();
+            var result = postService.Add(post);
                         
-            Assert.IsFalse(result);
-            Assert.IsTrue(errors.Count == 1);
-            Assert.IsTrue(errors[0].PropertyName == "Author.Id");
+            Assert.IsFalse(result.IsValid);
+            Assert.IsTrue(result.Errors.Count == 1);
+            Assert.IsTrue(result.Errors[0].PropertyName == "Author.Id");
             
         }
 
-        public class FakePostRepository : IPostRepository
+        private class FakePostRepository : IPostRepository
         {
+            public List<Post> Posts { get; set; }
+
+            public FakePostRepository()
+            {
+                this.Posts = new List<Post>();
+            }
+
             public Post GetById(int id)
             {
-                throw new NotImplementedException();
+                return this.Posts.Find(x => x.Id == id);
             }
 
             public PagedList<Post> GetAll(int pageNumber = 1, int pageSize = 50)
@@ -52,7 +58,7 @@ namespace Joomiz.Blog.Domain.Test
 
             public void Add(Post obj)
             {
-                
+                this.Posts.Add(obj);
             }
 
             public void Update(Post obj)

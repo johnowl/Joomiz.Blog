@@ -57,22 +57,22 @@ namespace Joomiz.Blog.Domain.Services
             return this.authorRepository.GetAll(pageNumber, pageSize);
         }
 
-        public bool Add(Author obj)
+        public IValidationResult Add(Author obj)
         {
             if (obj == null)
                 throw new NullReferenceException("obj");
 
             obj.DateCreated = DateTime.UtcNow;
 
-            if (!this.authorValidation.Validate(obj))
-                return false;            
+            var validationResult = this.authorValidation.Validate(obj);
 
-            this.authorRepository.Add(obj);
+            if (validationResult.IsValid)
+                this.authorRepository.Add(obj);
 
-            return true;
+            return validationResult;
         }
 
-        public void ChangePassword(string name, string password, string newPassword)
+        public IValidationResult ChangePassword(string name, string password, string newPassword)
         {
             Author author = this.GetByName(name);
 
@@ -84,10 +84,15 @@ namespace Joomiz.Blog.Domain.Services
 
             author.Password = newPassword;
 
-            this.authorRepository.Update(author);
+            var validationResult = this.authorValidation.Validate(author);
+
+            if(validationResult.IsValid)
+                this.authorRepository.Update(author);
+
+            return validationResult;
         }
 
-        public bool Update(Author obj)
+        public IValidationResult Update(Author obj)
         {
             if (obj == null)
                 throw new NullReferenceException("obj");
@@ -101,12 +106,12 @@ namespace Joomiz.Blog.Domain.Services
             author.Name = obj.Name;
             author.Email = obj.Email;
 
-            if (!this.authorValidation.Validate(author))
-                return false;
+            var validationResult = this.authorValidation.Validate(author);
 
-            this.authorRepository.Update(author);
+            if (validationResult.IsValid)                
+                this.authorRepository.Update(author);
 
-            return true;
+            return validationResult;
         }
 
         public void Delete(int id)

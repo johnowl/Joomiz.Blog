@@ -46,9 +46,11 @@ namespace Joomiz.Blog.WebApplication.Controllers
 
         [HttpPost, ExportModelStateToTempData]
         public ActionResult AddComment(Comment comment)
-        {           
-            if (!this.commentAppService.Add(comment))
-                ControllerHelpers.AddErrors(this.commentAppService.GetValidationErrors(), ModelState);            
+        {
+            var validationResult = this.commentAppService.Add(comment);
+
+            if (validationResult.IsValid == false)
+                ControllerHelpers.AddErrors(validationResult.Errors, ModelState);            
 
             return RedirectToAction("Post", new { id = comment.PostId });
         }

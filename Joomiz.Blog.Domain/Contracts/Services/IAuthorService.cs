@@ -1,4 +1,5 @@
-﻿using Joomiz.Blog.Domain.Model;
+﻿using Joomiz.Blog.Domain.Contracts.Validation;
+using Joomiz.Blog.Domain.Model;
 using System;
 
 namespace Joomiz.Blog.Domain.Contracts.Services
@@ -7,6 +8,6 @@ namespace Joomiz.Blog.Domain.Contracts.Services
     {
         Author GetByName(string name);
         Author GetByNameByPassword(string name, string password);
-        void ChangePassword(string name, string password, string newPassword);
+        IValidationResult ChangePassword(string name, string password, string newPassword);
     }
 }

@@ -26,12 +26,7 @@ namespace Joomiz.Blog.Application.Services
             var authorRepository = RepositoryFactory.GetAuthorRepository();
             this.authorValidation = ValidationFactory.GetAuthorValidation();
             this.authorService = ServiceFactory.GetAuthorService(authorRepository, this.authorValidation);
-        }
-
-        public IEnumerable<IValidationError> GetValidationErrors()
-        {
-            return this.authorValidation.GetErrors();
-        }        
+        }                
 
         public Author GetById(int id)
         {
@@ -58,12 +53,12 @@ namespace Joomiz.Blog.Application.Services
             return list;
         }
 
-        public bool Add(Author obj)
+        public IValidationResult Add(Author obj)
         {            
             return authorService.Add(obj);
         }
 
-        public bool Update(Author obj)
+        public IValidationResult Update(Author obj)
         {
             return authorService.Update(obj);
         }

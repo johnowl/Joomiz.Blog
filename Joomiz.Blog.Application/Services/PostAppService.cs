@@ -33,12 +33,7 @@ namespace Joomiz.Blog.Application.Services
             this.postService = ServiceFactory.GetPostService(RepositoryFactory.GetPostRepository(), this.postValidation);
             this.commentService = ServiceFactory.GetCommentService(RepositoryFactory.GetCommentRepository(), null);
             this.categoryService = ServiceFactory.GetCategoryService(RepositoryFactory.GetCategoryRepository(), null);
-        }
-
-        public IEnumerable<IValidationError> GetValidationErrors()
-        {
-            return this.postValidation.GetErrors();
-        }  
+        }        
 
         public Post GetById(int id)
         {
@@ -62,12 +57,12 @@ namespace Joomiz.Blog.Application.Services
             return this.postService.GetAll(pageNumber, pageSize);
         }
 
-        public bool Add(Post obj)
+        public IValidationResult Add(Post obj)
         {            
             return this.postService.Add(obj);
         }
 
-        public bool Update(Post obj)
+        public IValidationResult Update(Post obj)
         {
             return this.postService.Update(obj);
         }

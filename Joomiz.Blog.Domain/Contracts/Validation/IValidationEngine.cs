@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 namespace Joomiz.Blog.Domain.Contracts.Validation
 {
-    public interface IValidation<T> where T : IEntity
+    public interface IValidationEngine<T> where T : IEntity
     {
         IList<IValidationRule<T>> ValidationRules { get; }
         void AddRule(IValidationRule<T> rule);
         void AddRule(ISpecification<T> specification, IValidationError error);
-        bool Validate(T obj);
-        IList<IValidationError> GetErrors();
+        IValidationResult Validate(T obj);
     }
 }

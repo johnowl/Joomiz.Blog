@@ -57,10 +57,11 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
 
             if (comment.Id > 0)
             {
-                if (!this.commentAppService.Update(comment))
+                var validationResult = this.commentAppService.Update(comment);
+                if (validationResult.IsValid == false)
                 {
                     ViewBag.Error = "There are erros, please correct and try again.";
-                    ControllerHelpers.AddErrors(this.commentAppService.GetValidationErrors(), ModelState);
+                    ControllerHelpers.AddErrors(validationResult.Errors, ModelState);
                 }
                 else
                 {
@@ -69,10 +70,11 @@ namespace Joomiz.Blog.WebApplication.Areas.Dashboard.Controllers
             }
             else
             {
-                if (!this.commentAppService.Add(comment))
+                var validationResult = this.commentAppService.Add(comment);
+                if (validationResult.IsValid == false)
                 {
                     ViewBag.Error = "There are erros, please correct and try again.";
-                    ControllerHelpers.AddErrors(this.commentAppService.GetValidationErrors(), ModelState);
+                    ControllerHelpers.AddErrors(validationResult.Errors, ModelState);
                     RedirectToAction("New");
                 }
                 else

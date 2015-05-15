@@ -28,32 +28,32 @@ namespace Joomiz.Blog.Domain.Services
             return this.commentRepository.GetAll(pageNumber, pageSize);
         }
 
-        public bool Add(Comment obj)
+        public IValidationResult Add(Comment obj)
         {
             if (obj == null)
                 throw new NullReferenceException("obj");
 
             obj.DateCreated = DateTime.UtcNow;
 
-            if (!this.commentValidation.Validate(obj))
-                return false;            
+            var validationResult = this.commentValidation.Validate(obj);
+            
+            if(validationResult.IsValid)
+                this.commentRepository.Add(obj);
 
-            this.commentRepository.Add(obj);
-
-            return true;
+            return validationResult;
         }
 
-        public bool Update(Comment obj)
+        public IValidationResult Update(Comment obj)
         {
             if (obj == null)
                 throw new NullReferenceException("obj");
 
-            if (!this.commentValidation.Validate(obj))
-                return false;
+            var validationResult = this.commentValidation.Validate(obj);
 
-            this.commentRepository.Update(obj);
+            if (validationResult.IsValid)
+                this.commentRepository.Update(obj);
 
-            return true;
+            return validationResult;
         }
 
         public void Delete(int id)

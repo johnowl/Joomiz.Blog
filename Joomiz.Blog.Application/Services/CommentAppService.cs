@@ -23,12 +23,7 @@ namespace Joomiz.Blog.Application.Services
         public CommentAppService(ICommentService commentService)
         {
             this.commentService = commentService;
-        }
-
-        public IEnumerable<IValidationError> GetValidationErrors()
-        {
-            return this.commentValidation.GetErrors();
-        }   
+        }        
 
         public void Approve(int commentId, int authorId)
         {
@@ -54,12 +49,12 @@ namespace Joomiz.Blog.Application.Services
             return commentService.GetAll(pageNumber, pageSize);
         }
 
-        public bool Add(Comment obj)
+        public IValidationResult Add(Comment obj)
         {
             return commentService.Add(obj);
         }
 
-        public bool Update(Comment obj)
+        public IValidationResult Update(Comment obj)
         {
             return commentService.Update(obj);
         }

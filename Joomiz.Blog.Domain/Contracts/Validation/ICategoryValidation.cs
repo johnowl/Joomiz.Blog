@@ -2,7 +2,7 @@
 
 namespace Joomiz.Blog.Domain.Contracts.Validation
 {
-    public interface ICategoryValidation : IValidation<Category>
+    public interface ICategoryValidation : IValidationEngine<Category>
     {
     }
 }

@@ -3,7 +3,7 @@ using Joomiz.Blog.Domain.Validation;
 
 namespace Joomiz.Blog.Domain.Contracts.Validation
 {
-    public interface IAuthorValidation : IValidation<Author>
+    public interface IAuthorValidation : IValidationEngine<Author>
     {
 
     }

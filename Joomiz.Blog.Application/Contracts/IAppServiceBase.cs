@@ -9,9 +9,8 @@ namespace Joomiz.Blog.Application.Contracts
     {
         T GetById(int id);
         PagedList<T> GetAll(int pageNumber = 1, int pageSize = 50);
-        bool Add(T obj);
-        bool Update(T obj);
+        IValidationResult Add(T obj);
+        IValidationResult Update(T obj);
         void Delete(int id);
-        IEnumerable<IValidationError> GetValidationErrors();
     }
 }

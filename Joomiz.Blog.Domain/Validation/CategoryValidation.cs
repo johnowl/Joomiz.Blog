@@ -5,7 +5,7 @@ using Joomiz.Blog.Domain.Validation.Rules.AuthorRules;
 
 namespace Joomiz.Blog.Domain.Validation
 {
-    public class CategoryValidation : Validation<Category>, ICategoryValidation
+    public class CategoryValidation : ValidationEngine<Category>, ICategoryValidation
     {
         public CategoryValidation(ICategoryRepository categoryRepository)
         {

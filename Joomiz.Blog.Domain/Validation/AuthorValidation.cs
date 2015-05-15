@@ -6,7 +6,7 @@ using Joomiz.Blog.Domain.Validation.Rules.AuthorRules;
 
 namespace Joomiz.Blog.Domain.Validation
 {
-    public class AuthorValidation : Validation<Author>, IAuthorValidation
+    public class AuthorValidation : ValidationEngine<Author>, IAuthorValidation
     {
         public AuthorValidation()
         {
