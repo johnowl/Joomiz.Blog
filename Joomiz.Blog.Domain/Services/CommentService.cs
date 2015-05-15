@@ -89,5 +89,10 @@ namespace Joomiz.Blog.Domain.Services
 
             this.Update(comment);
         }
+
+        public int CountPendingComments()
+        {
+            return this.commentRepository.CountPendingComments();
+        }
     }
 }

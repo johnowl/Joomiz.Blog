@@ -87,12 +87,17 @@ namespace Joomiz.Blog.Infrastructure.Repository
 
         public PagedList<Comment> GetAll(int pageNumber = 1, int pageSize = 50)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Comment> GetAll()
         {
-            throw new System.NotImplementedException();
-        }       
+            throw new NotImplementedException();
+        }
+
+        public int CountPendingComments()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

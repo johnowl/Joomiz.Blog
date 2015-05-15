@@ -9,5 +9,6 @@ namespace Joomiz.Blog.Domain.Contracts.Services
         void Approve(int commentId);
         void Reject(int commentId);
         PagedList<Comment> GetByPostId(int postId, int pageNumber = 1, int pageSize = 50);
+        int CountPendingComments();
     }
 }
