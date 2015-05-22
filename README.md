@@ -11,24 +11,24 @@ Simple C# blog system using Domain Driven Design.
 
 ##Specifications
 
-- As an author I can view posts
-- As an author I can publish a post
-- As an author I can associate a post in one or more categories
-- As an author I can save a post draft
-- As an author I can edit a post
-- As an author I can delete a post
-- As an author I can view comments by status
-- As an author I can approve a comment
-- As an author I can reject a comment
-- As an author I can delete a comment
-- As an author I can add a category
-- As an author I can edit a category
-- As an author I can delete a category
-- As an author I can add new authors
-- As an author I can delete an author
-- As a reader I can view posts
-- As a reader I can add comments
-- As a reader I can filter posts by category
+- As an author I can view posts.
+- As an author I can publish a post.
+- As an author I can associate a post in one or more categories.
+- As an author I can save a post draft.
+- As an author I can edit a post.
+- As an author I can delete a post.
+- As an author I can view comments by status.
+- As an author I can approve a comment.
+- As an author I can reject a comment.
+- As an author I can delete a comment.
+- As an author I can add a category.
+- As an author I can edit a category.
+- As an author I can delete a category.
+- As an author I can add new authors.
+- As an author I can delete an author.
+- As a reader I can view posts.
+- As a reader I can add comments.
+- As a reader I can filter posts by category.
  
 ##Rules
 
