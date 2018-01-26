@@ -1,15 +1,15 @@
-#Joomiz.Blog
+# Joomiz.Blog
 
 ![Build status](https://ci.appveyor.com/api/projects/status/mmx3ro53hhlvxiuq)
 
 
 Simple C# blog system using Domain Driven Design.
 
-##Pre-requisites
+## Pre-requisites
 
 - Visual Studio 2013 Community
 
-##Specifications
+## Specifications
 
 - As an author I can view posts.
 - As an author I can publish a post.
@@ -30,7 +30,7 @@ Simple C# blog system using Domain Driven Design.
 - As a reader I can add comments.
 - As a reader I can filter posts by category.
  
-##Rules
+## Rules
 
 - Only authorized authors can publish posts.
 - Only authorized authors can add or delete authors.
